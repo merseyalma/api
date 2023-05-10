@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.tracking 接口">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\software\java\apache-maven-3.5.2\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2FqDbfBCOtRYbZNa0fIiCHDRhpx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.43448275" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zcunsoft.adv.common.models.file" />
+      <recent name="com.zcunsoft.adv.admin.controllers" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\entity\mysql" />
+      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\model\response\active" />
+      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\repository\mysql" />
+      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\model\request\active" />
+      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\services" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zcunsoft.tracking.report.model" />
+      <recent name="com.zcunsoft.tracking.report.entity.mysql" />
+      <recent name="com.zcunsoft.tracking.report.controller" />
+      <recent name="com.zcunsoft.adv.admin.cfg" />
+      <recent name="com.zcunsoft.adv.admin.daemons" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="report" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="tracking-report" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zcunsoft.App" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="" />
+      <created>1665210810077</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665210810077</updated>
+      <workItem from="1665210811622" duration="1615000" />
+      <workItem from="1665212883115" duration="6403000" />
+      <workItem from="1665222018502" duration="1451000" />
+      <workItem from="1665276472253" duration="322000" />
+      <workItem from="1665277519875" duration="815000" />
+      <workItem from="1665279273268" duration="15000" />
+      <workItem from="1665294392202" duration="12638000" />
+      <workItem from="1665361945150" duration="18199000" />
+      <workItem from="1665467465346" duration="29000" />
+      <workItem from="1665550645399" duration="11477000" />
+      <workItem from="1665567937267" duration="996000" />
+      <workItem from="1665621980200" duration="11878000" />
+      <workItem from="1665645304262" duration="8237000" />
+      <workItem from="1665709723780" duration="5059000" />
+      <workItem from="1665968744522" duration="16394000" />
+      <workItem from="1666053981894" duration="8590000" />
+      <workItem from="1666070925660" duration="119000" />
+      <workItem from="1666078611378" duration="633000" />
+      <workItem from="1666080115131" duration="2862000" />
+      <workItem from="1666139656096" duration="7393000" />
+      <workItem from="1666148047765" duration="13813000" />
+      <workItem from="1666227493698" duration="1723000" />
+      <workItem from="1666244154235" duration="3194000" />
+      <workItem from="1666253086512" duration="2005000" />
+      <workItem from="1666260786430" duration="1008000" />
+      <workItem from="1666332596749" duration="113000" />
+      <workItem from="1666336006478" duration="191000" />
+      <workItem from="1666402711898" duration="1796000" />
+      <workItem from="1666404862072" duration="1156000" />
+      <workItem from="1666676216831" duration="4211000" />
+      <workItem from="1666745863774" duration="13939000" />
+      <workItem from="1666835550897" duration="15446000" />
+      <workItem from="1666918586036" duration="1294000" />
+      <workItem from="1666920102885" duration="453000" />
+      <workItem from="1666920631841" duration="788000" />
+      <workItem from="1666922004148" duration="3173000" />
+      <workItem from="1667177453325" duration="243000" />
+      <workItem from="1667180472701" duration="3545000" />
+      <workItem from="1667195686367" duration="19000" />
+      <workItem from="1667265944761" duration="619000" />
+      <workItem from="1667270135370" duration="711000" />
+      <workItem from="1667294460095" duration="1331000" />
+      <workItem from="1667350565264" duration="8588000" />
+      <workItem from="1667436641421" duration="114000" />
+      <workItem from="1667523569108" duration="797000" />
+      <workItem from="1667535589185" duration="787000" />
+      <workItem from="1667543902097" duration="4693000" />
+      <workItem from="1667783109964" duration="10665000" />
+      <workItem from="1667814776447" duration="600000" />
+      <workItem from="1667957267408" duration="6360000" />
+      <workItem from="1668042538265" duration="26000" />
+      <workItem from="1668399606293" duration="816000" />
+      <workItem from="1668411684485" duration="497000" />
+      <workItem from="1668482291065" duration="10513000" />
+      <workItem from="1668565149648" duration="7796000" />
+      <workItem from="1669094280924" duration="9358000" />
+      <workItem from="1669165861352" duration="18495000" />
+      <workItem from="1669251095017" duration="20689000" />
+      <workItem from="1669337376185" duration="780000" />
+      <workItem from="1669338915204" duration="14649000" />
+      <workItem from="1669603859488" duration="5988000" />
+      <workItem from="1669685366111" duration="8377000" />
+      <workItem from="1669714417226" duration="4000" />
+      <workItem from="1669774595032" duration="612000" />
+      <workItem from="1669790222987" duration="585000" />
+      <workItem from="1669855373234" duration="182000" />
+      <workItem from="1669857022470" duration="1962000" />
+      <workItem from="1669875753674" duration="3353000" />
+      <workItem from="1669886276937" duration="45000" />
+      <workItem from="1669967457110" duration="325000" />
+      <workItem from="1670202664132" duration="4844000" />
+      <workItem from="1670230404651" duration="1684000" />
+      <workItem from="1670290107275" duration="422000" />
+      <workItem from="1670295649505" duration="2639000" />
+      <workItem from="1670375566556" duration="2398000" />
+      <workItem from="1670390643129" duration="202000" />
+      <workItem from="1671089427306" duration="1426000" />
+      <workItem from="1671094477234" duration="918000" />
+      <workItem from="1671618765996" duration="20000" />
+      <workItem from="1671712515617" duration="292000" />
+      <workItem from="1671758795928" duration="710000" />
+      <workItem from="1675323873127" duration="3885000" />
+      <workItem from="1675397999397" duration="1987000" />
+      <workItem from="1675648134371" duration="13584000" />
+      <workItem from="1675734333971" duration="7826000" />
+      <workItem from="1675760798129" duration="1573000" />
+      <workItem from="1675821418465" duration="8958000" />
+      <workItem from="1675844688442" duration="63000" />
+      <workItem from="1675845054896" duration="4136000" />
+      <workItem from="1675906140084" duration="11617000" />
+      <workItem from="1675928928988" duration="1955000" />
+      <workItem from="1675992314392" duration="2699000" />
+      <workItem from="1675998251585" duration="35000" />
+      <workItem from="1676253364334" duration="2550000" />
+      <workItem from="1676281612677" duration="975000" />
+      <workItem from="1676340655886" duration="5209000" />
+      <workItem from="1676351082210" duration="5158000" />
+      <workItem from="1676423506371" duration="2098000" />
+      <workItem from="1676445083408" duration="3127000" />
+      <workItem from="1676452634897" duration="393000" />
+      <workItem from="1676453428635" duration="1859000" />
+      <workItem from="1676507483675" duration="28187000" />
+      <workItem from="1676597855524" duration="1189000" />
+      <workItem from="1676612668212" duration="5576000" />
+      <workItem from="1676683987986" duration="651000" />
+      <workItem from="1676686996172" duration="2438000" />
+      <workItem from="1676785150781" duration="495000" />
+      <workItem from="1676790900471" duration="1082000" />
+      <workItem from="1677219612536" duration="863000" />
+      <workItem from="1677467652994" duration="11083000" />
+      <workItem from="1677487806177" duration="4324000" />
+      <workItem from="1677632756494" duration="34000" />
+      <workItem from="1677650040820" duration="4042000" />
+      <workItem from="1677718427320" duration="762000" />
+      <workItem from="1677719840430" duration="24000" />
+      <workItem from="1677725216447" duration="8413000" />
+      <workItem from="1677803722273" duration="7303000" />
+      <workItem from="1677820365945" duration="3262000" />
+      <workItem from="1677834611781" duration="659000" />
+      <workItem from="1678065291834" duration="64000" />
+      <workItem from="1678067113563" duration="2567000" />
+      <workItem from="1678092510557" duration="1259000" />
+      <workItem from="1678149536570" duration="2580000" />
+      <workItem from="1678154428024" duration="9826000" />
+      <workItem from="1678166044949" duration="536000" />
+      <workItem from="1678168205350" duration="9669000" />
+      <workItem from="1678237107631" duration="676000" />
+      <workItem from="1678259222092" duration="647000" />
+      <workItem from="1678323702196" duration="812000" />
+      <workItem from="1678344333904" duration="1841000" />
+      <workItem from="1678762930150" duration="62000" />
+      <workItem from="1678783964056" duration="866000" />
+      <workItem from="1678840236323" duration="2046000" />
+      <workItem from="1678845645721" duration="9000" />
+      <workItem from="1678849544886" duration="2948000" />
+      <workItem from="1678940494021" duration="1161000" />
+      <workItem from="1678943884329" duration="398000" />
+      <workItem from="1679018206654" duration="1929000" />
+      <workItem from="1679378235389" duration="4614000" />
+      <workItem from="1679386274823" duration="25000" />
+      <workItem from="1679463373535" duration="276000" />
+      <workItem from="1679474790482" duration="723000" />
+      <workItem from="1679545442098" duration="679000" />
+      <workItem from="1679650274937" duration="726000" />
+      <workItem from="1680092628941" duration="3999000" />
+      <workItem from="1680138267752" duration="5873000" />
+      <workItem from="1680157423437" duration="550000" />
+      <workItem from="1680158683973" duration="1646000" />
+      <workItem from="1680228275493" duration="20279000" />
+      <workItem from="1680483750990" duration="24011000" />
+      <workItem from="1680568741537" duration="20861000" />
+      <workItem from="1680741337927" duration="7136000" />
+      <workItem from="1680750470016" duration="3576000" />
+      <workItem from="1680828899422" duration="13582000" />
+      <workItem from="1680852950835" duration="1813000" />
+      <workItem from="1681087109613" duration="20404000" />
+      <workItem from="1681116290581" duration="4201000" />
+      <workItem from="1681174406347" duration="16012000" />
+      <workItem from="1681260038329" duration="10864000" />
+      <workItem from="1681277395378" duration="20000" />
+      <workItem from="1681286425254" duration="1535000" />
+      <workItem from="1681432571365" duration="21000" />
+      <workItem from="1681462287334" duration="4512000" />
+      <workItem from="1681691600243" duration="2866000" />
+      <workItem from="1681695274433" duration="25000" />
+      <workItem from="1681696320177" duration="297000" />
+      <workItem from="1681723105786" duration="1009000" />
+      <workItem from="1681778943875" duration="5749000" />
+      <workItem from="1681784791526" duration="68000" />
+      <workItem from="1681788786351" duration="2125000" />
+      <workItem from="1681795666709" duration="1219000" />
+      <workItem from="1681864875923" duration="242000" />
+      <workItem from="1681865783267" duration="1713000" />
+      <workItem from="1681887634209" duration="3948000" />
+      <workItem from="1682126471002" duration="2845000" />
+      <workItem from="1682210651761" duration="1078000" />
+      <workItem from="1682226559860" duration="2328000" />
+      <workItem from="1682296547508" duration="1507000" />
+      <workItem from="1683164640720" duration="879000" />
+      <workItem from="1683186240059" duration="1824000" />
+      <workItem from="1683194239373" duration="171000" />
+      <workItem from="1683246290567" duration="193000" />
+      <workItem from="1683263218057" duration="12216000" />
+      <workItem from="1683353412871" duration="740000" />
+      <workItem from="1683363779748" duration="1521000" />
+      <workItem from="1683599597179" duration="9944000" />
+      <workItem from="1683679282173" duration="2496000" />
+      <workItem from="1683697671384" duration="1508000" />
+      <workItem from="1683699201928" duration="74000" />
+      <workItem from="1683699302877" duration="1666000" />
+      <workItem from="1683700992332" duration="441000" />
+      <workItem from="1683701445659" duration="183000" />
+    </task>
+    <task id="LOCAL-00026" summary="1.修复30日 | 平均单日使用时长的均值bug.">
+      <created>1678762986442</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1678762986442</updated>
+    </task>
+    <task id="LOCAL-00027" summary="1.修复广告落地页保存问题.">
+      <created>1678843571285</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1678843571285</updated>
+    </task>
+    <task id="LOCAL-00028" summary="1.对有链接的广告，对外接口返回才有landingUrl.">
+      <created>1678850259398</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1678850259398</updated>
+    </task>
+    <task id="LOCAL-00029" summary="1.修改列导出顺序">
+      <created>1678940956972</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1678940956973</updated>
+    </task>
+    <task id="LOCAL-00030" summary="1.修改列导出顺序">
+      <created>1678941386344</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1678941386344</updated>
+    </task>
+    <task id="LOCAL-00031" summary="1.修改ctr.">
+      <created>1678944280862</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1678944280862</updated>
+    </task>
+    <task id="LOCAL-00032" summary="1.修改图片地址防止缓存">
+      <created>1679381729810</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1679381729810</updated>
+    </task>
+    <task id="LOCAL-00033" summary="1.修改广告(位)分时统计bug.">
+      <created>1680138435086</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1680138435086</updated>
+    </task>
+    <task id="LOCAL-00034" summary="1.全局数据报表(日月启动用户数,日月额度,日月在线拍).">
+      <created>1680251130562</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1680251130562</updated>
+    </task>
+    <task id="LOCAL-00035" summary="1.产业渠道报表">
+      <created>1680256509648</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1680256509648</updated>
+    </task>
+    <task id="LOCAL-00036" summary="1.产业渠道报表(新在线拍未登录日月)">
+      <created>1680486040706</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1680486040707</updated>
+    </task>
+    <task id="LOCAL-00037" summary="1.优化重构全局数据报表(月).">
+      <created>1680495480873</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1680495480873</updated>
+    </task>
+    <task id="LOCAL-00038" summary="1.清除无效Import">
+      <created>1680495565592</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1680495565592</updated>
+    </task>
+    <task id="LOCAL-00039" summary="1.修改产品渠道数据报表(月).">
+      <created>1680506601460</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1680506601460</updated>
+    </task>
+    <task id="LOCAL-00040" summary="1.产品渠道数据报表(登录用户部分).">
+      <created>1680509293218</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1680509293218</updated>
+    </task>
+    <task id="LOCAL-00041" summary="1.重构全局用户统计.">
+      <created>1680510932931</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1680510932931</updated>
+    </task>
+    <task id="LOCAL-00042" summary="1.重构简化代码.">
+      <created>1680512802985</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1680512802985</updated>
+    </task>
+    <task id="LOCAL-00043" summary="1.全局数据(注册用户DAU,MAU).">
+      <created>1680514135436</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1680514135436</updated>
+    </task>
+    <task id="LOCAL-00044" summary="1.全局数据分时(注册用户DAU,MAU).">
+      <created>1680514796092</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1680514796092</updated>
+    </task>
+    <task id="LOCAL-00045" summary="1.产品渠道数据分时.">
+      <created>1680570570942</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1680570570942</updated>
+    </task>
+    <task id="LOCAL-00046" summary="1.产品渠道数据(全段统计).">
+      <created>1680578171115</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1680578171115</updated>
+    </task>
+    <task id="LOCAL-00047" summary="1.增加统计计算开关配置项.">
+      <created>1680579911159</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1680579911159</updated>
+    </task>
+    <task id="LOCAL-00048" summary="1.优化广告(位)后端统计.">
+      <created>1680600797108</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1680600797108</updated>
+    </task>
+    <task id="LOCAL-00049" summary="1.修改广告(位)统计方式.">
+      <created>1680745457098</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1680745457098</updated>
+    </task>
+    <task id="LOCAL-00050" summary="1.tbl_stat sharding.">
+      <created>1680745529937</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1680745529937</updated>
+    </task>
+    <task id="LOCAL-00051" summary="1.ignore">
+      <created>1680749490689</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1680749490689</updated>
+    </task>
+    <task id="LOCAL-00052" summary="1.修改广告计划的json文件输出.">
+      <created>1680752189931</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1680752189931</updated>
+    </task>
+    <task id="LOCAL-00053" summary="1.广告图上传七牛云.">
+      <created>1680849794513</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1680849794513</updated>
+    </task>
+    <task id="LOCAL-00054" summary="1.修改广告(位)统计.">
+      <created>1681088234476</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1681088234476</updated>
+    </task>
+    <task id="LOCAL-00055" summary="1.增加上传七牛云日志.">
+      <created>1681095981484</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1681095981484</updated>
+    </task>
+    <task id="LOCAL-00056" summary="1.实时统计、整体趋势、用户分析和地域分布增加下载渠道和版本筛选.">
+      <created>1681108948955</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1681108948955</updated>
+    </task>
+    <task id="LOCAL-00057" summary="1.整合全局数据、产品渠道报表（实习生）">
+      <created>1681120458509</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1681120458509</updated>
+    </task>
+    <task id="LOCAL-00058" summary="1.修改统计到当前时间.">
+      <created>1681182132600</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1681182132600</updated>
+    </task>
+    <task id="LOCAL-00059" summary="1.增加活动统计(总uv，pv,clicks,clicksuv，每日uv,pv,clicks,clicksuv)">
+      <created>1681199192347</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1681199192347</updated>
+    </task>
+    <task id="LOCAL-00060" summary="1.增加活动卡片位统计(每日clicksuv)">
+      <created>1681267373350</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1681267373350</updated>
+    </task>
+    <task id="LOCAL-00061" summary="1.修复下.">
+      <created>1681267992426</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1681267992426</updated>
+    </task>
+    <task id="LOCAL-00062" summary="1.修复上传七牛云的文件路径bug.">
+      <created>1681288186313</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1681288186313</updated>
+    </task>
+    <task id="LOCAL-00063" summary="1.整合活动统计展示（实习生）.">
+      <created>1681466811245</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1681466811245</updated>
+    </task>
+    <task id="LOCAL-00064" summary="1.修改渠道显示.">
+      <created>1681693889292</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1681693889292</updated>
+    </task>
+    <task id="LOCAL-00065" summary="1.增加下载渠道和版本筛选.">
+      <created>1681782609970</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1681782609970</updated>
+    </task>
+    <task id="LOCAL-00066" summary="1.修改地域分布.">
+      <created>1681784529432</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1681784529432</updated>
+    </task>
+    <task id="LOCAL-00067" summary="1.修复七牛云上传bug;2.增加日志.">
+      <created>1681793500880</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1681793500880</updated>
+    </task>
+    <task id="LOCAL-00068" summary="1.修复访问记录广告(位)id为空问题.">
+      <created>1681893446584</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1681893446586</updated>
+    </task>
+    <task id="LOCAL-00069" summary="1.修复渠道分时问题.">
+      <created>1682229481616</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1682229481616</updated>
+    </task>
+    <task id="LOCAL-00070" summary="1.全局数据 和渠道数据统计。">
+      <created>1683271087999</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1683271088000</updated>
+    </task>
+    <task id="LOCAL-00071" summary="1.remove.">
+      <created>1683277785117</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1683277785117</updated>
+    </task>
+    <task id="LOCAL-00072" summary="1.增加根据用户权限返回应用。">
+      <created>1683610604435</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1683610604435</updated>
+    </task>
+    <task id="LOCAL-00073" summary="1.统计接口根据用户权限过滤应用。">
+      <created>1683681771114</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1683681771114</updated>
+    </task>
+    <task id="LOCAL-00074" summary="1.tracking 接口">
+      <created>1683700502082</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1683700502082</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1.tbl_stat sharding." />
+    <MESSAGE value="1.ignore" />
+    <MESSAGE value="1.修改广告计划的json文件输出." />
+    <MESSAGE value="1.广告图上传七牛云." />
+    <MESSAGE value="1.修改广告(位)统计." />
+    <MESSAGE value="1.增加上传七牛云日志." />
+    <MESSAGE value="1.实时统计、整体趋势、用户分析和地域分布增加下载渠道和版本筛选." />
+    <MESSAGE value="1.整合全局数据、产品渠道报表（实习生）" />
+    <MESSAGE value="1.修改统计到当前时间." />
+    <MESSAGE value="1.增加活动统计(总uv，pv,clicks,clicksuv，每日uv,pv,clicks,clicksuv)" />
+    <MESSAGE value="1.增加活动卡片位统计(每日clicksuv)" />
+    <MESSAGE value="1.修复下." />
+    <MESSAGE value="1.修复上传七牛云的文件路径bug." />
+    <MESSAGE value="1.整合活动统计展示（实习生）." />
+    <MESSAGE value="1.修改渠道显示." />
+    <MESSAGE value="1.增加下载渠道和版本筛选." />
+    <MESSAGE value="1.修改地域分布." />
+    <MESSAGE value="1.修复七牛云上传bug;2.增加日志." />
+    <MESSAGE value="1.修复访问记录广告(位)id为空问题." />
+    <MESSAGE value="1.修复渠道分时问题." />
+    <MESSAGE value="1.全局数据 和渠道数据统计。" />
+    <MESSAGE value="1.remove." />
+    <MESSAGE value="1.增加根据用户权限返回应用。" />
+    <MESSAGE value="1.统计接口根据用户权限过滤应用。" />
+    <MESSAGE value="1.tracking 接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.tracking 接口" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="this.yMFORMAT.get().format(statDate)" />
+        <watch expression="responseData.getTotal_new_users_30()" />
+        <watch expression="responseData.getTotal_new_users_30() * 100f" />
+        <watch expression="responseData.getTotal_active_users_30()" />
+        <watch expression="uri.getHost()" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
