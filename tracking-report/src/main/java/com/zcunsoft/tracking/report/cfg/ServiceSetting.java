@@ -10,5 +10,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("trackingreport")
 public class ServiceSetting {
 
+    private int tenantDept;
 
+    public int getTenantDept() {
+        return tenantDept;
+    }
+
+    public void setTenantDept(int tenantDept) {
+        this.tenantDept = tenantDept;
+    }
 }

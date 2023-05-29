@@ -4,6 +4,7 @@ import com.zcunsoft.common.core.domain.entity.SysRole;
 import com.zcunsoft.common.core.domain.model.LoginUser;
 import com.zcunsoft.common.utils.DateUtils;
 import com.zcunsoft.common.utils.SecurityUtils;
+import com.zcunsoft.tracking.report.cfg.ServiceSetting;
 import com.zcunsoft.tracking.report.entity.clickhouse.*;
 import com.zcunsoft.tracking.report.model.*;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +35,8 @@ public class ReportServiceImpl implements IReportService {
 
     private final NamedParameterJdbcTemplate mysqlJdbcTemplate;
 
+    private final ServiceSetting serviceSetting;
+
     private final ThreadLocal<DateFormat> yMdFORMAT = new ThreadLocal<DateFormat>() {
         @Override
         protected DateFormat initialValue() {
@@ -48,9 +51,10 @@ public class ReportServiceImpl implements IReportService {
         }
     };
 
-    public ReportServiceImpl(NamedParameterJdbcTemplate clickHouseJdbcTemplate, NamedParameterJdbcTemplate mysqlJdbcTemplate) {
+    public ReportServiceImpl(NamedParameterJdbcTemplate clickHouseJdbcTemplate, NamedParameterJdbcTemplate mysqlJdbcTemplate,ServiceSetting serviceSetting) {
         this.clickHouseJdbcTemplate = clickHouseJdbcTemplate;
         this.mysqlJdbcTemplate = mysqlJdbcTemplate;
+        this.serviceSetting=serviceSetting;
     }
 
     @Override
@@ -1042,26 +1046,27 @@ public class ReportServiceImpl implements IReportService {
             }
 
         } else {
-            if ("user".equalsIgnoreCase(type)) {
-                AppData appData = new AppData();
-                appData.setValue("");
-                appData.setLabel("所有");
-                appList.add(appData);
+//            if ("user".equalsIgnoreCase(type)) {
+//                AppData appData = new AppData();
+//                appData.setValue("");
+//                appData.setLabel("所有");
+//                appList.add(appData);
+//            }
+            MapSqlParameterSource paramMap = new MapSqlParameterSource();
+            paramMap.addValue("id", serviceSetting.getTenantDept());
+            List<String> deptList = mysqlJdbcTemplate.queryForList("select dept_name from sys_dept where parent_id=:id and status=0", paramMap, String.class);
+            if (deptList.size() > 0) {
+                for(String dept :deptList) {
+                    String[] deptPair = dept.split("\\(", -1);
+                    AppData appData = new AppData();
+                    appData.setLabel(deptPair[0]);
+                    appData.setValue(deptPair[0]);
+                    if (deptPair.length > 1) {
+                        appData.setValue(deptPair[1].replaceAll("\\)", ""));
+                    }
+                    appList.add(appData);
+                }
             }
-            AppData appData1 = new AppData();
-            appData1.setValue("gpapp");
-            appData1.setLabel("国拍App");
-            appList.add(appData1);
-
-            AppData appData2 = new AppData();
-            appData2.setValue("gpzf");
-            appData2.setLabel("国拍租房");
-            appList.add(appData2);
-
-            AppData appData3 = new AppData();
-            appData3.setValue("live");
-            appData3.setLabel("在线拍");
-            appList.add(appData3);
         }
         return appList;
     }

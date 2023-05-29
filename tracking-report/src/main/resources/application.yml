@@ -42,3 +42,4 @@ xss:
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
 trackingreport:
+  tenant-dept: 102

@@ -52,10 +52,14 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
-        <!--        <dependency>-->
-<!--            <groupId>com.zcunsoft</groupId>-->
-<!--            <artifactId>advsys-common</artifactId>-->
-<!--            <version>3.8.4</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zcunsoft</groupId>
+            <artifactId>advsys-common</artifactId>
+            <version>3.8.4</version>
+        </dependency>
     </dependencies>
 </project>
