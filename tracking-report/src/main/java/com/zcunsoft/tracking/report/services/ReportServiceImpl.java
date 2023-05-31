@@ -712,7 +712,7 @@ public class ReportServiceImpl implements IReportService {
 
             Timestamp startTime = new Timestamp(endTime.getTime() - (areaStatRequest.getPast() - 1) * DateUtils.MILLIS_PER_DAY);
 
-            String getAreaSql = "select stat_date,province,sum(new_users) new_users,sum(active_users) active_users,max(update_time) update_time from sensor_user_report_byarea where stat_date>=:start_date and stat_date<=:end_date and country='中国' and province is not null and province <>'' ";
+            String getAreaSql = "select stat_date,province,sum(new_users) new_users,sum(active_users) active_users,max(update_time) update_time from sensor_user_report_byarea where stat_date>=:start_date and stat_date<=:end_date and country='中国' and province is not null and province<>'all' and province <>'' ";
 
             String where = "";
 
@@ -856,7 +856,7 @@ public class ReportServiceImpl implements IReportService {
             String getListSql = "select city,sum(new_users) as amount from sensor_user_report_byarea ";
             String getCountSql = "select count(distinct(city)) from sensor_user_report_byarea";
             String order = " group by city order by sum(new_users) desc";
-            String where = " where new_users >0 and country='中国' and city is not null and city <>''";
+            String where = " where new_users >0 and country='中国' and city is not null and city <>'all' ";
 
             long now = System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY;
             Timestamp endTime = new Timestamp(now);
@@ -873,7 +873,7 @@ public class ReportServiceImpl implements IReportService {
             paramMap.addValue("starttime", this.yMdFORMAT.get().format(startTime));
 
 
-            where += " and stat_date<:endtime ";
+            where += " and stat_date<=:endtime ";
             paramMap.addValue("endtime", this.yMdFORMAT.get().format(endTime));
 
             String projectName = filterProject(queryCityNewUsersRequest.getProjectName());
@@ -931,7 +931,7 @@ public class ReportServiceImpl implements IReportService {
             String getListSql = "select city,sum(active_users) as amount from sensor_user_report_byarea ";
             String getCountSql = "select count(distinct(city)) from sensor_user_report_byarea";
             String order = " group by city order by sum(active_users) desc";
-            String where = " where active_users >0 and country='中国' and city is not null and city <>''";
+            String where = " where active_users >0 and country='中国' and city is not null and city <>'all'";
 
             long now = System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY;
             Timestamp endTime = new Timestamp(now);
@@ -948,7 +948,7 @@ public class ReportServiceImpl implements IReportService {
             paramMap.addValue("starttime", this.yMdFORMAT.get().format(startTime));
 
 
-            where += " and stat_date<:endtime ";
+            where += " and stat_date<=:endtime ";
             paramMap.addValue("endtime", this.yMdFORMAT.get().format(endTime));
 
             String projectName = filterProject(queryCityActiveUsersRequest.getProjectName());
