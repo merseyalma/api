@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.增加租户和应用关联.">
+    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.修复地域统计bug.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/daemon/CalcProcessBoss.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/entity/clickhouse/UserSpecificList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QuerySpecificUserListResponeData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QuerySpecificUserListResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QuerySpecificUserStatRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QueryUserDetailRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QueryUserDetailRespone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/QueryUserDetailResponeData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/model/UserDetailData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/IStatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/StatServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-report/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/IReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/IReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/ReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-report/tracking-report.iml" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-report/tracking-report.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +81,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tracking-framework/src/main/java/com/zcunsoft/framework/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
@@ -80,11 +98,11 @@
       <recent name="com.zcunsoft.adv.admin.controllers" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\埋点\backend\tracking-report\src\main\java\com\zcunsoft\tracking\report\services" />
+      <recent name="D:\projects\埋点\backend\tracking-report\src\main\java\com\zcunsoft\tracking\report\model" />
       <recent name="D:\projects\埋点\backend\tracking-framework\src\main\java\com\zcunsoft\framework\config" />
       <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\entity\mysql" />
       <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\model\response\active" />
-      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\repository\mysql" />
-      <recent name="D:\projects\JavaWork201812\tracking-parent\tracking-report\src\main\java\com\zcunsoft\tracking\report\model\request\active" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.zcunsoft.tracking.report.model" />
@@ -310,14 +328,11 @@
       <workItem from="1685084162477" duration="4597000" />
       <workItem from="1685321450420" duration="3716000" />
       <workItem from="1685335620060" duration="768000" />
-      <workItem from="1685495240113" duration="1703000" />
-    </task>
-    <task id="LOCAL-00028" summary="1.对有链接的广告，对外接口返回才有landingUrl.">
-      <created>1678850259398</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1678850259398</updated>
+      <workItem from="1685495240113" duration="3207000" />
+      <workItem from="1685601450652" duration="4035000" />
+      <workItem from="1685670923682" duration="2975000" />
+      <workItem from="1685929203019" duration="10790000" />
+      <workItem from="1686012436455" duration="7213000" />
     </task>
     <task id="LOCAL-00029" summary="1.修改列导出顺序">
       <created>1678940956972</created>
@@ -655,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685329578983</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="1.修复地域统计bug.">
+      <created>1685497600180</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1685497600180</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,7 +695,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.ignore" />
     <MESSAGE value="1.修改广告计划的json文件输出." />
     <MESSAGE value="1.广告图上传七牛云." />
     <MESSAGE value="1.修改广告(位)统计." />
@@ -698,15 +719,16 @@
     <MESSAGE value="1.统计接口根据用户权限过滤应用。" />
     <MESSAGE value="1.tracking 接口" />
     <MESSAGE value="1.增加租户和应用关联." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.增加租户和应用关联." />
+    <MESSAGE value="1.修复地域统计bug." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.修复地域统计bug." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-report/src/main/java/com/zcunsoft/tracking/report/services/ReportServiceImpl.java</url>
-          <line>1029</line>
-          <option name="timeStamp" value="1" />
+          <line>1151</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -8,12 +8,12 @@ spring:
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
     clickhouse:
-      jdbc-url: jdbc:clickhouse://114.80.106.44:8123/sensors
-      username: default
-      password: cEqmCx27Xg7t
-#      jdbc-url: jdbc:clickhouse://10.10.220.188:8123/default
+#      jdbc-url: jdbc:clickhouse://114.80.106.44:8123/sensors
 #      username: default
-#      password:
+#      password: cEqmCx27Xg7t
+      jdbc-url: jdbc:clickhouse://10.10.220.188:8123/default
+      username: default
+      password:
       driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
       #         driver-class-name: cc.blynk.clickhouse.ClickHouseDriver
       connection-timeout: 20000

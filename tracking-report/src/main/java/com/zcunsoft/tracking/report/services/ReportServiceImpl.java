@@ -7,6 +7,7 @@ import com.zcunsoft.common.utils.SecurityUtils;
 import com.zcunsoft.tracking.report.cfg.ServiceSetting;
 import com.zcunsoft.tracking.report.entity.clickhouse.*;
 import com.zcunsoft.tracking.report.model.*;
+import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,10 +52,10 @@ public class ReportServiceImpl implements IReportService {
         }
     };
 
-    public ReportServiceImpl(NamedParameterJdbcTemplate clickHouseJdbcTemplate, NamedParameterJdbcTemplate mysqlJdbcTemplate,ServiceSetting serviceSetting) {
+    public ReportServiceImpl(NamedParameterJdbcTemplate clickHouseJdbcTemplate, NamedParameterJdbcTemplate mysqlJdbcTemplate, ServiceSetting serviceSetting) {
         this.clickHouseJdbcTemplate = clickHouseJdbcTemplate;
         this.mysqlJdbcTemplate = mysqlJdbcTemplate;
-        this.serviceSetting=serviceSetting;
+        this.serviceSetting = serviceSetting;
     }
 
     @Override
@@ -1022,6 +1023,161 @@ public class ReportServiceImpl implements IReportService {
         return response;
     }
 
+    @Override
+    public QuerySpecificUserListResponse getUserStat(QuerySpecificUserStatRequest querySpecificUserStatRequest) {
+        QuerySpecificUserListResponse response = new QuerySpecificUserListResponse();
+        try {
+            MapSqlParameterSource paramMap = new MapSqlParameterSource();
+
+            String getListSql = "select * from sensor_user_detail_bydate";
+            String getCountSql = "select count(*) from sensor_user_detail_bydate";
+            String order = " order by stat_date desc";
+            String where = " and distinct_id <>''";
+
+            if (StringUtils.isNotBlank(querySpecificUserStatRequest.getChannel())) {
+                where += " and lib=:channel";
+                paramMap.addValue("channel", querySpecificUserStatRequest.getChannel());
+            }
+            if (StringUtils.isNotBlank(querySpecificUserStatRequest.getDownloadChannel())) {
+                where += " and download_channel=:download_channel";
+                String downloadChannel = querySpecificUserStatRequest.getDownloadChannel();
+                if ("无".equalsIgnoreCase(downloadChannel)) {
+                    downloadChannel = "";
+                }
+
+                paramMap.addValue("download_channel", downloadChannel);
+            }
+            if (StringUtils.isNotBlank(querySpecificUserStatRequest.getAppVersion())) {
+                where += " and app_version=:app_version";
+                String version = querySpecificUserStatRequest.getAppVersion();
+                if ("无".equalsIgnoreCase(version)) {
+                    version = "";
+                }
+                paramMap.addValue("app_version", version);
+            }
+            if (StringUtils.isNotBlank(querySpecificUserStatRequest.getStartTime())) {
+                where += " and stat_date>=:starttime ";
+                paramMap.addValue("starttime", querySpecificUserStatRequest.getStartTime());
+            }
+            if (StringUtils.isNotBlank(querySpecificUserStatRequest.getEndTime())) {
+                where += " and stat_date<=:endtime ";
+                paramMap.addValue("endtime", querySpecificUserStatRequest.getEndTime());
+            }
+
+            String projectName = filterProject(querySpecificUserStatRequest.getProjectName());
+            if (StringUtils.isNotBlank(projectName)) {
+                where += " and project_name=:project ";
+                paramMap.addValue("project", projectName);
+            }
+
+            if (StringUtils.isNotBlank(where)) {
+                getListSql += " where " + where.substring(4);
+                getCountSql += " where " + where.substring(4);
+            }
+            getListSql += order + " limit " + (querySpecificUserStatRequest.getPageNum() - 1) * querySpecificUserStatRequest.getPageSize() + "," + querySpecificUserStatRequest.getPageSize();
+
+
+            Integer total = clickHouseJdbcTemplate.queryForObject(getCountSql, paramMap, Integer.class);
+            List<UserSpecificList> userStatList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<UserSpecificList>(UserSpecificList.class));
+
+            for (UserSpecificList user : userStatList) {
+                user.setClient_ip(user.getClient_ip().replaceAll("\\[", "").replaceAll("['\\]]", ""));
+            }
+
+            QuerySpecificUserListResponeData responseData = new QuerySpecificUserListResponeData();
+
+            responseData.setRows(userStatList);
+            responseData.setTotal(total);
+            response.setData(responseData);
+
+        } catch (Exception ex) {
+            logger.error("getUserStat error," + ex.getMessage());
+            response.setCode(500);
+            response.setMsg("操作失败");
+        }
+        return response;
+    }
+
+    @Override
+    public QueryUserDetailRespone getUserDetail(QueryUserDetailRequest queryUserDetailRequest) {
+        QueryUserDetailRespone response = new QueryUserDetailRespone();
+        try {
+            MapSqlParameterSource paramMap = new MapSqlParameterSource();
+
+            String getListSql = "select log_time,event,client_ip,url, title, event_duration from log_analysis";
+            String getCountSql = "select count(*) from log_analysis";
+            String order = " order by log_time ";
+            String where = "";
+            if ("pv".equalsIgnoreCase(queryUserDetailRequest.getType())) {
+                where += " and event in ('$pageview','$AppStart','$MPLaunch')";
+            } else if ("duration".equalsIgnoreCase(queryUserDetailRequest.getType())) {
+                where += " and event in ('$WebPageLeave','$AppEnd','$MPPageLeave')";
+            }
+            if (StringUtils.isNotBlank(queryUserDetailRequest.getChannel()) && !("all".equalsIgnoreCase(queryUserDetailRequest.getChannel()))) {
+                where += " and lib=:channel";
+                paramMap.addValue("channel", queryUserDetailRequest.getChannel());
+            }
+            if (StringUtils.isNotBlank(queryUserDetailRequest.getDownloadChannel()) && !("all".equalsIgnoreCase(queryUserDetailRequest.getDownloadChannel()))) {
+                where += " and download_channel=:download_channel";
+                String downloadChannel = queryUserDetailRequest.getDownloadChannel();
+                if ("无".equalsIgnoreCase(downloadChannel)) {
+                    downloadChannel = "";
+                }
+                paramMap.addValue("download_channel", downloadChannel);
+            }
+            if (StringUtils.isNotBlank(queryUserDetailRequest.getAppVersion()) && !("all".equalsIgnoreCase(queryUserDetailRequest.getAppVersion()))) {
+                where += " and app_version=:app_version";
+                String version = queryUserDetailRequest.getAppVersion();
+                if ("无".equalsIgnoreCase(version)) {
+                    version = "";
+                }
+                paramMap.addValue("app_version", version);
+            }
+            if (StringUtils.isNotBlank(queryUserDetailRequest.getStatDate())) {
+                where += " and stat_date=:starttime ";
+                paramMap.addValue("starttime", queryUserDetailRequest.getStatDate());
+            }
+            if (StringUtils.isNotBlank(queryUserDetailRequest.getDistinctId())) {
+                where += " and distinct_id=:distinct_id ";
+                paramMap.addValue("distinct_id", queryUserDetailRequest.getDistinctId());
+            }
+
+       //     String projectName = filterProject(queryUserDetailRequest.getProjectName());
+            String projectName =queryUserDetailRequest.getProjectName();
+            if (StringUtils.isNotBlank(projectName) && !("all".equalsIgnoreCase(projectName))) {
+                where += " and project_name=:project ";
+                paramMap.addValue("project", projectName);
+            }
+
+            if (StringUtils.isNotBlank(where)) {
+                getListSql += " where " + where.substring(4);
+                getCountSql += " where " + where.substring(4);
+            }
+            getListSql += order + " limit " + (queryUserDetailRequest.getPageNum() - 1) * queryUserDetailRequest.getPageSize() + "," + queryUserDetailRequest.getPageSize();
+            logSql("getUserDetail",getListSql,paramMap);
+            Integer total = clickHouseJdbcTemplate.queryForObject(getCountSql, paramMap, Integer.class);
+            List<UserDetailData> userStatList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<UserDetailData>(UserDetailData.class));
+
+            QueryUserDetailResponeData responseData = new QueryUserDetailResponeData();
+
+            responseData.setRows(userStatList);
+            responseData.setTotal(total);
+            response.setData(responseData);
+
+        } catch (Exception ex) {
+            logger.error("getUserDetail error," + ex.getMessage());
+            response.setCode(500);
+            response.setMsg("操作失败");
+        }
+        return response;
+    }
+
+    private void logSql(String type, String sql, MapSqlParameterSource paramMap) {
+        List<String> values = paramMap.getValues().values().stream().map(Object::toString).collect(Collectors.toList());
+        logger.info(type + "_" + sql + " " + String.join(",", values));
+    }
+
+
     private List<AppData> getAppByUser(String type) {
         List<AppData> appList = new ArrayList<>();
         LoginUser loginUser = SecurityUtils.getLoginUser();
@@ -1056,7 +1212,7 @@ public class ReportServiceImpl implements IReportService {
             paramMap.addValue("id", serviceSetting.getTenantDept());
             List<String> deptList = mysqlJdbcTemplate.queryForList("select dept_name from sys_dept where parent_id=:id and status=0", paramMap, String.class);
             if (deptList.size() > 0) {
-                for(String dept :deptList) {
+                for (String dept : deptList) {
                     String[] deptPair = dept.split("\\(", -1);
                     AppData appData = new AppData();
                     appData.setLabel(deptPair[0]);

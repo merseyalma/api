@@ -27,4 +27,8 @@ public interface IReportService {
     GetDownloadChannelResponse getDownloadChannel();
 
     GetAppResponse getApp(GetAppRequest getAppRequest);
+
+    QuerySpecificUserListResponse getUserStat(QuerySpecificUserStatRequest querySpecificUserStatRequest);
+
+    QueryUserDetailRespone getUserDetail(QueryUserDetailRequest queryUserDetailRequest);
 }

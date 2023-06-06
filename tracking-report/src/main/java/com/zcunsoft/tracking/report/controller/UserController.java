@@ -41,4 +41,14 @@ public class UserController {
     public QueryCityActiveUsersResponse getCityActiveUsersList(@RequestBody QueryCityActiveUsersRequest queryCityActiveUsersRequest) {
         return reportService.getCityActiveUsersList(queryCityActiveUsersRequest);
     }
+
+    @RequestMapping(path = "/getUserStat", method = RequestMethod.POST)
+    public QuerySpecificUserListResponse getUserStat(@RequestBody QuerySpecificUserStatRequest querySpecificUserStatRequest) {
+        return reportService.getUserStat(querySpecificUserStatRequest);
+    }
+
+    @RequestMapping(path = "/getUserDetail", method = RequestMethod.POST)
+    public QueryUserDetailRespone getUserDetail(@RequestBody QueryUserDetailRequest  queryUserDetailRequest) {
+        return reportService.getUserDetail(queryUserDetailRequest);
+    }
 }
