@@ -1,0 +1,17 @@
+springdoc:
+  swagger-ui:
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.zcunsoft.tracking.api.controllers
+server:
+  port: 8087
+spring:
+  application.name: trackingapi
+logging:
+  file:
+    path: log
+trackingreport:

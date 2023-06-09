@@ -1,7 +1,5 @@
 package com.zcunsoft.tracking.report.services;
 
-import com.alibaba.fastjson2.JSONObject;
-import com.zcunsoft.common.utils.DateUtils;
 import com.zcunsoft.tracking.report.cfg.ServiceSetting;
 import com.zcunsoft.tracking.report.model.AppVersion;
 import com.zcunsoft.tracking.report.model.DownloadChannel;
@@ -13,13 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.net.URI;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Service
 public class StatServiceImpl implements IStatService {

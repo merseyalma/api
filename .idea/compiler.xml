@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="tracking-report" />
         <module name="tracking-framework" />
+        <module name="tracking-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="tracking-api" target="1.8" />
       <module name="tracking-framework" target="8" />
       <module name="tracking-parent" target="1.8" />
       <module name="tracking-report" target="8" />
@@ -19,6 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tracking-api" options="-parameters" />
       <module name="tracking-framework" options="-parameters" />
       <module name="tracking-report" options="-parameters" />
     </option>

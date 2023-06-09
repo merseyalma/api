@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springdoc:springdoc-openapi-common:1.6.15">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../software/ide/repository2/org/springdoc/springdoc-openapi-common/1.6.15/springdoc-openapi-common-1.6.15.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../software/ide/repository2/org/springdoc/springdoc-openapi-common/1.6.15/springdoc-openapi-common-1.6.15-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../software/ide/repository2/org/springdoc/springdoc-openapi-common/1.6.15/springdoc-openapi-common-1.6.15-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/tracking-api/tracking-api.iml" filepath="$PROJECT_DIR$/tracking-api/tracking-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/tracking-framework/tracking-framework.iml" filepath="$PROJECT_DIR$/tracking-framework/tracking-framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/tracking-parent.iml" filepath="$PROJECT_DIR$/tracking-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/tracking-report/tracking-report.iml" filepath="$PROJECT_DIR$/tracking-report/tracking-report.iml" />
