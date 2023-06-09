@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Schema(description = "获取来源网站详情的请求")
@@ -14,8 +15,8 @@ public class GetSourceWebsiteDetailRequest {
     @Schema(description = "时间类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "day")
     private String timeType;
 
-    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "android")
-    private String channel;
+    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"android\"]")
+    private List<String> channel = new ArrayList<>();
 
     @Schema(description = "地域", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"上海\"]")
     private List<String> area;

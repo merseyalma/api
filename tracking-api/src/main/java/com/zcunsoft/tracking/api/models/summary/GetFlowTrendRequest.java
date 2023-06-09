@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Schema(description = "获取流量趋势的请求")
 @Data
@@ -12,8 +14,8 @@ public class GetFlowTrendRequest {
     @Schema(description = "时间类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "day")
     private String timeType;
 
-    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "android")
-    private String channel;
+    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"android\"]")
+    private List<String> channel = new ArrayList<>();
 
     @Schema(description = "开始时间", requiredMode = Schema.RequiredMode.REQUIRED, example = "2023-06-08")
     private Timestamp startTime;
