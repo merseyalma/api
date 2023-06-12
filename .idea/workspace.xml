@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.增加埋点api.">
+    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.支持多渠道筛选.">
+      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/searchword/GetSearchWordDetailResponseData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SearchWordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SearchWordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/searchword/GetSearchWordDetailRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/searchword/GetSearchWordDetailRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/searchword/GetSearchWordDetailResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/searchword/GetSearchWordDetailResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,13 +338,8 @@
       <workItem from="1686012436455" duration="8220000" />
       <workItem from="1686210755085" duration="7232000" />
       <workItem from="1686270553453" duration="21812000" />
-    </task>
-    <task id="LOCAL-00031" summary="1.修改ctr.">
-      <created>1678944280862</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1678944280862</updated>
+      <workItem from="1686303712612" duration="308000" />
+      <workItem from="1686531158055" duration="301000" />
     </task>
     <task id="LOCAL-00032" summary="1.修改图片地址防止缓存">
       <created>1679381729810</created>
@@ -678,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686302229440</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="1.支持多渠道筛选.">
+      <created>1686303998381</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1686303998381</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,7 +702,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.修改广告(位)统计." />
     <MESSAGE value="1.增加上传七牛云日志." />
     <MESSAGE value="1.实时统计、整体趋势、用户分析和地域分布增加下载渠道和版本筛选." />
     <MESSAGE value="1.整合全局数据、产品渠道报表（实习生）" />
@@ -721,7 +726,8 @@
     <MESSAGE value="1.修复地域统计bug." />
     <MESSAGE value="1.增加用户明细." />
     <MESSAGE value="1.增加埋点api." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.增加埋点api." />
+    <MESSAGE value="1.支持多渠道筛选." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.支持多渠道筛选." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

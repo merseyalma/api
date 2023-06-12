@@ -2,6 +2,7 @@ package com.zcunsoft.tracking.api.controllers;
 
 import com.zcunsoft.tracking.api.models.searchword.GetSearchWordDetailRequest;
 import com.zcunsoft.tracking.api.models.searchword.GetSearchWordDetailResponse;
+import com.zcunsoft.tracking.api.models.searchword.GetSearchWordDetailResponseData;
 import com.zcunsoft.tracking.api.models.searchword.SearchWordDetail;
 import com.zcunsoft.tracking.api.models.sourcewebsite.GetSourceWebsiteDetailRequest;
 import com.zcunsoft.tracking.api.models.sourcewebsite.GetSourceWebsiteDetailResponse;
@@ -28,9 +29,12 @@ public class SearchWordController {
     public GetSearchWordDetailResponse getSearchWordDetail(@RequestBody GetSearchWordDetailRequest getSearchWordDetailRequest, HttpServletRequest request) {
 
         GetSearchWordDetailResponse response = new GetSearchWordDetailResponse();
-        List<SearchWordDetail> responseData = new ArrayList<>();
+        GetSearchWordDetailResponseData responseData = new GetSearchWordDetailResponseData();
+        List<SearchWordDetail> searchWordDetailList = new ArrayList<>();
         SearchWordDetail searchWordDetail = new SearchWordDetail();
-        responseData.add(searchWordDetail);
+        searchWordDetailList.add(searchWordDetail);
+        responseData.setRows(searchWordDetailList);
+        responseData.setTotal(100);
         response.setData(responseData);
         return response;
     }
