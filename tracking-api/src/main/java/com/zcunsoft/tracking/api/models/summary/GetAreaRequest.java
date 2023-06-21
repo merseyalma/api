@@ -14,7 +14,7 @@ public class GetAreaRequest {
     @Schema(description = "时间类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "day")
     private String timeType;
 
-    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"android\"]")
+    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"安卓\",\"苹果\",\"网站\",\"微信小程序\"]")
     private List<String> channel = new ArrayList<>();
 
     @Schema(description = "开始时间", requiredMode = Schema.RequiredMode.REQUIRED, example = "2023-06-08")

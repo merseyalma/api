@@ -1,7 +1,6 @@
 package com.zcunsoft.tracking.api.controllers;
 
-import com.zcunsoft.tracking.api.models.summary.GetFlowTrendRequest;
-import com.zcunsoft.tracking.api.models.summary.GetFlowTrendResponseData;
+import com.zcunsoft.tracking.api.models.summary.*;
 import com.zcunsoft.tracking.api.models.trend.FlowDetail;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponse;
@@ -18,9 +17,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "trend")
+@RequestMapping(path = "flow")
 @Tag(name = "趋势分析", description = "趋势分析")
-public class TrendController {
+public class FlowController {
+
+    @Operation(summary = "获取流量概览")
+    @RequestMapping(path = "/getFlow", method = RequestMethod.POST)
+    public GetFlowResponse getFlow(@RequestBody GetFlowRequest getFlowRequest, HttpServletRequest request) {
+
+        GetFlowResponse response = new GetFlowResponse();
+        GetFlowResponseData responseData=new GetFlowResponseData();
+        FlowSummary summary = new FlowSummary();
+        responseData.setCurrent(summary);
+        responseData.setPrevious(summary);
+        responseData.setSamePeriod(summary);
+
+        response.setData(responseData);
+        return response;
+    }
+
+    @Operation(summary = "获取流量趋势统计")
+    @RequestMapping(path = "/getFlowTrend", method = RequestMethod.POST)
+    public GetFlowTrendResponse getFlowTrend(@RequestBody GetFlowTrendRequest getFlowTrendRequest, HttpServletRequest request) {
+
+        GetFlowTrendResponse response = new GetFlowTrendResponse();
+        GetFlowTrendResponseData responseData=new GetFlowTrendResponseData();
+        response.setData(responseData);
+        return response;
+    }
+
 
     @Operation(summary = "获取流量趋势详情")
     @RequestMapping(path = "/getFlowTrendDetail", method = RequestMethod.POST)

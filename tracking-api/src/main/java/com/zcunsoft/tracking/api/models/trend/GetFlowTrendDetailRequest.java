@@ -14,10 +14,10 @@ public class GetFlowTrendDetailRequest {
     @Schema(description = "时间类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "day")
     private String timeType;
 
-    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"android\"]")
+    @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"安卓\",\"苹果\",\"网站\",\"微信小程序\"]")
     private List<String> channel = new ArrayList<>();
 
-    @Schema(description = "地域", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"上海\"]")
+    @Schema(description = "地域", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"上海\",\"北京\"]")
     private List<String> area;
 
     @Schema(description = "访客类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "新访客")

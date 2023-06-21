@@ -4,6 +4,8 @@ import com.zcunsoft.tracking.api.models.sourcewebsite.GetSourceWebsiteDetailRequ
 import com.zcunsoft.tracking.api.models.sourcewebsite.GetSourceWebsiteDetailResponse;
 import com.zcunsoft.tracking.api.models.sourcewebsite.GetSourceWebsiteDetailResponseData;
 import com.zcunsoft.tracking.api.models.sourcewebsite.SourceWebsiteDetail;
+import com.zcunsoft.tracking.api.models.summary.GetSourceWebsiteRequest;
+import com.zcunsoft.tracking.api.models.summary.GetSourceWebsiteResponse;
 import com.zcunsoft.tracking.api.models.summary.GetSourceWebsiteResponseData;
 import com.zcunsoft.tracking.api.models.trend.FlowDetail;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
@@ -24,6 +26,19 @@ import java.util.List;
 @RequestMapping(path = "sourcewebsite")
 @Tag(name = "来源网站分析", description = "来源网站分析")
 public class SourceWebsiteController {
+
+
+    @Operation(summary = "获取Top10来源网站")
+    @RequestMapping(path = "/getSourceWebsite", method = RequestMethod.POST)
+    public GetSourceWebsiteResponse getSourceWebsite(@RequestBody GetSourceWebsiteRequest getSourceWebsiteRequest, HttpServletRequest request) {
+
+        GetSourceWebsiteResponse response = new GetSourceWebsiteResponse();
+        List<GetSourceWebsiteResponseData> responseDataList = new ArrayList<>();
+        GetSourceWebsiteResponseData responseData=new GetSourceWebsiteResponseData();
+        responseDataList.add(responseData);
+        response.setData(responseDataList);
+        return response;
+    }
 
     @Operation(summary = "获取来源网站详情")
     @RequestMapping(path = "/getSourceSiteDetail", method = RequestMethod.POST)

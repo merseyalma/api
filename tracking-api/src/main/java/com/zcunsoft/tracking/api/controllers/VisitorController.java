@@ -1,5 +1,6 @@
 package com.zcunsoft.tracking.api.controllers;
 
+import com.zcunsoft.tracking.api.models.summary.FlowSummary;
 import com.zcunsoft.tracking.api.models.visitor.*;
 import com.zcunsoft.tracking.api.models.visituri.VisitUri;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +19,20 @@ import java.util.List;
 @RequestMapping(path = "visitor")
 @Tag(name = "访客分析", description = "访客分析")
 public class VisitorController {
+
+
+
+    @Operation(summary = "获取访客")
+    @RequestMapping(path = "/getVisitor", method = RequestMethod.POST)
+    public com.zcunsoft.tracking.api.models.summary.GetVisitorResponse getVisitor(@RequestBody com.zcunsoft.tracking.api.models.summary.GetVisitorRequest getVisitorRequest, HttpServletRequest request) {
+
+        com.zcunsoft.tracking.api.models.summary.GetVisitorResponse response = new com.zcunsoft.tracking.api.models.summary.GetVisitorResponse();
+        com.zcunsoft.tracking.api.models.summary.GetVisitorResponseData responseData=new com.zcunsoft.tracking.api.models.summary.GetVisitorResponseData();
+        responseData.setNewVisitor(new FlowSummary());
+        responseData.setOldVisitor(new FlowSummary());
+        response.setData(responseData);
+        return response;
+    }
 
     @Operation(summary = "获取访客详情")
     @RequestMapping(path = "/getVisitorDetail", method = RequestMethod.POST)

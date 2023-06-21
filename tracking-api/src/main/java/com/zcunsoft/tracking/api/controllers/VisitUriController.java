@@ -1,5 +1,8 @@
 package com.zcunsoft.tracking.api.controllers;
 
+import com.zcunsoft.tracking.api.models.summary.GetVisitUriRequest;
+import com.zcunsoft.tracking.api.models.summary.GetVisitUriResponse;
+import com.zcunsoft.tracking.api.models.summary.GetVisitUriResponseData;
 import com.zcunsoft.tracking.api.models.visituri.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,6 +19,19 @@ import java.util.List;
 @RequestMapping(path = "visituri")
 @Tag(name = "受访页面分析", description = "受访页面分析")
 public class VisitUriController {
+
+
+    @Operation(summary = "获取Top10受访页面")
+    @RequestMapping(path = "/getVisitUri", method = RequestMethod.POST)
+    public GetVisitUriResponse getVisitUri(@RequestBody GetVisitUriRequest getVisitUriRequest, HttpServletRequest request) {
+
+        GetVisitUriResponse response = new GetVisitUriResponse();
+        List<GetVisitUriResponseData> responseDataList = new ArrayList<>();
+        GetVisitUriResponseData responseData=new GetVisitUriResponseData();
+        responseDataList.add(responseData);
+        response.setData(responseDataList);
+        return response;
+    }
 
     @Operation(summary = "获取地域详情")
     @RequestMapping(path = "/getVisitUriDetail", method = RequestMethod.POST)
