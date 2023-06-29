@@ -15,4 +15,5 @@ spring:
 logging:
   file:
     path: log
-trackingreport:
+trackingapi:
+  access-control-allow-origin: http://localhost
