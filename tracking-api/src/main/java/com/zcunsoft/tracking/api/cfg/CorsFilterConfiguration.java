@@ -29,7 +29,10 @@ public class CorsFilterConfiguration {
 
             System.out.println(origin);
             CorsConfiguration configuration = new CorsConfiguration();
-            if (setting.getAccessControlAllowOrigin().contains(origin)) {
+            if (setting.getAccessControlAllowOrigin().contains("*")) {
+                configuration.addAllowedOrigin("*");
+            }
+            else  if (setting.getAccessControlAllowOrigin().contains(origin)) {
                 configuration.addAllowedOrigin(origin);
             }
             configuration.addAllowedHeader("x-requested-with");
