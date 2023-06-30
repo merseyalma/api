@@ -5,6 +5,7 @@ import com.zcunsoft.tracking.api.models.trend.FlowDetail;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponse;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponseData;
+import com.zcunsoft.tracking.api.services.IReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +23,13 @@ import java.util.List;
 @Tag(name = "趋势分析", description = "趋势分析")
 public class FlowController {
 
+    @Resource
+    IReportService reportService;
+
     @Operation(summary = "获取流量概览")
     @RequestMapping(path = "/getFlow", method = RequestMethod.POST)
     public GetFlowResponse getFlow(@RequestBody GetFlowRequest getFlowRequest, HttpServletRequest request) {
-
-        GetFlowResponse response = new GetFlowResponse();
-        GetFlowResponseData responseData=new GetFlowResponseData();
-        FlowSummary summary = new FlowSummary();
-        responseData.setCurrent(summary);
-        responseData.setPrevious(summary);
-        responseData.setSamePeriod(summary);
-
-        response.setData(responseData);
-        return response;
+        return reportService.getFlow(getFlowRequest);
     }
 
     @Operation(summary = "获取流量趋势统计")

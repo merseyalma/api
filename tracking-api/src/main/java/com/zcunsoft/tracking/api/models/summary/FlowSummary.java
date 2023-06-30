@@ -1,5 +1,6 @@
 package com.zcunsoft.tracking.api.models.summary;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -22,7 +23,8 @@ public class FlowSummary {
     private float avgPv;
 
     @Schema(description = "平均访问时长")
-    private int avgVisitTime;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT,pattern = ".02f")
+    private float avgVisitTime;
 
     @Schema(description = "跳出率")
     private float bounceRate;

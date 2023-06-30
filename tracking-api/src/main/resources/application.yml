@@ -12,8 +12,19 @@ server:
   port: 8087
 spring:
   application.name: trackingapi
+  datasource:
+    clickhouse:
+      jdbc-url: jdbc:clickhouse://10.10.220.188:8123/default
+      username: default
+      password:
+      driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+#    generate-ddl: true
 logging:
   file:
     path: log
 trackingapi:
-  access-control-allow-origin: http://localhost
+  access-control-allow-origin: "*"
