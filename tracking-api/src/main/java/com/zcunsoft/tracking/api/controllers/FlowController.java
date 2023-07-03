@@ -32,20 +32,16 @@ public class FlowController {
         return reportService.getFlow(getFlowRequest);
     }
 
-    @Operation(summary = "获取流量趋势统计")
+    @Operation(summary = "获取流量趋势")
     @RequestMapping(path = "/getFlowTrend", method = RequestMethod.POST)
     public GetFlowTrendResponse getFlowTrend(@RequestBody GetFlowTrendRequest getFlowTrendRequest, HttpServletRequest request) {
-
-        GetFlowTrendResponse response = new GetFlowTrendResponse();
-        GetFlowTrendResponseData responseData=new GetFlowTrendResponseData();
-        response.setData(responseData);
-        return response;
+        return reportService.getFlowTrend(getFlowTrendRequest);
     }
 
 
     @Operation(summary = "获取流量趋势详情")
     @RequestMapping(path = "/getFlowTrendDetail", method = RequestMethod.POST)
-    public GetFlowTrendDetailResponse getFlowTrend(@RequestBody GetFlowTrendDetailRequest getFlowTrendDetailRequest, HttpServletRequest request) {
+    public GetFlowTrendDetailResponse getFlowTrendDetail(@RequestBody GetFlowTrendDetailRequest getFlowTrendDetailRequest, HttpServletRequest request) {
 
         GetFlowTrendDetailResponse response = new GetFlowTrendDetailResponse();
         GetFlowTrendDetailResponseData getFlowTrendDetailResponseData =new GetFlowTrendDetailResponseData();

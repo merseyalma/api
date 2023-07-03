@@ -1,4 +1,4 @@
-package com.zcunsoft.tracking.api.models.visitor;
+package com.zcunsoft.tracking.api.models.visituri;
 
 
 import com.zcunsoft.tracking.api.models.visituri.VisitUri;

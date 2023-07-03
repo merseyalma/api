@@ -1,17 +1,15 @@
 package com.zcunsoft.tracking.api.entity.clickhouse;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import java.sql.Timestamp;
 
-@Entity(name = "flow_summary_bydate")
+@Entity(name = "visitor_summary_bydate")
 @Data
-public class FlowSummarybydate {
+public class VisitorSummarybydate {
 
     @Id
     @Column
@@ -20,6 +18,11 @@ public class FlowSummarybydate {
     @Id
     @Column
     String lib;
+
+
+    @Id
+    @Column
+    String userType;
 
     @Id
     @Column

@@ -28,4 +28,7 @@ public class FlowSummary {
 
     @Schema(description = "跳出率")
     private float bounceRate;
+
+    @Schema(description = "渠道")
+    private String channel;
 }

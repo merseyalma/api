@@ -18,7 +18,11 @@ public class GetFlowTrendRequest {
     private List<String> channel = new ArrayList<>();
 
     @Schema(description = "开始时间", requiredMode = Schema.RequiredMode.REQUIRED, example = "2023-06-08")
-    private Timestamp startTime;
+    private String startTime;
     @Schema(description = "结束时间", requiredMode = Schema.RequiredMode.REQUIRED, example = "2023-06-10")
-    private Timestamp endTime;
+    private String endTime;
+
+
+    @Schema(description = "应用名", requiredMode = Schema.RequiredMode.REQUIRED, example = "")
+    private String projectName;
 }

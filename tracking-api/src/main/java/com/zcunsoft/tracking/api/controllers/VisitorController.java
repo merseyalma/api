@@ -1,16 +1,23 @@
 package com.zcunsoft.tracking.api.controllers;
 
 import com.zcunsoft.tracking.api.models.summary.FlowSummary;
+import com.zcunsoft.tracking.api.models.summary.GetVisitorSummaryRequest;
+import com.zcunsoft.tracking.api.models.summary.GetVisitorSummaryResponse;
+import com.zcunsoft.tracking.api.models.summary.GetVisitorSummaryResponseData;
 import com.zcunsoft.tracking.api.models.visitor.*;
+import com.zcunsoft.tracking.api.models.visituri.GetVisitUriListRequest;
+import com.zcunsoft.tracking.api.models.visituri.GetVisitUriListResponse;
+import com.zcunsoft.tracking.api.models.visituri.GetVisitUriListResponseData;
 import com.zcunsoft.tracking.api.models.visituri.VisitUri;
+import com.zcunsoft.tracking.api.services.IReportService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +26,14 @@ import java.util.List;
 @RequestMapping(path = "visitor")
 @Tag(name = "访客分析", description = "访客分析")
 public class VisitorController {
-
+    @Resource
+    IReportService reportService;
 
 
     @Operation(summary = "获取访客")
     @RequestMapping(path = "/getVisitor", method = RequestMethod.POST)
-    public com.zcunsoft.tracking.api.models.summary.GetVisitorResponse getVisitor(@RequestBody com.zcunsoft.tracking.api.models.summary.GetVisitorRequest getVisitorRequest, HttpServletRequest request) {
-
-        com.zcunsoft.tracking.api.models.summary.GetVisitorResponse response = new com.zcunsoft.tracking.api.models.summary.GetVisitorResponse();
-        com.zcunsoft.tracking.api.models.summary.GetVisitorResponseData responseData=new com.zcunsoft.tracking.api.models.summary.GetVisitorResponseData();
-        responseData.setNewVisitor(new FlowSummary());
-        responseData.setOldVisitor(new FlowSummary());
-        response.setData(responseData);
-        return response;
+    public GetVisitorSummaryResponse getVisitor(@RequestBody GetVisitorSummaryRequest getVisitorRequest, HttpServletRequest request) {
+         return reportService.getVisitor(getVisitorRequest);
     }
 
     @Operation(summary = "获取访客详情")
