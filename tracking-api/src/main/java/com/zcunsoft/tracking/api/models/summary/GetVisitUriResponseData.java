@@ -16,5 +16,6 @@ public class GetVisitUriResponseData {
     @Schema(description = "占比")
     private float percent;
 
-
+    @Schema(description = "渠道")
+    private String channel;
 }

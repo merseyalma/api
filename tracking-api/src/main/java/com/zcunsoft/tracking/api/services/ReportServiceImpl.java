@@ -1,8 +1,6 @@
 package com.zcunsoft.tracking.api.services;
 
-import com.zcunsoft.tracking.api.entity.clickhouse.FlowSummarybydate;
-import com.zcunsoft.tracking.api.entity.clickhouse.FlowSummarybyhour;
-import com.zcunsoft.tracking.api.entity.clickhouse.VisitorSummarybydate;
+import com.zcunsoft.tracking.api.entity.clickhouse.*;
 import com.zcunsoft.tracking.api.models.enums.LibType;
 import com.zcunsoft.tracking.api.models.summary.*;
 import org.apache.commons.lang3.StringUtils;
@@ -202,19 +200,281 @@ public class ReportServiceImpl implements IReportService {
 
         GetVisitorSummaryResponseData responseData = new GetVisitorSummaryResponseData();
 
-        Optional<VisitorSummarybydate> optionalVisitorOld= visitorList.stream().filter(f -> f.getUserType().equalsIgnoreCase("old")).findAny();
+        Optional<VisitorSummarybydate> optionalVisitorOld = visitorList.stream().filter(f -> f.getUserType().equalsIgnoreCase("old")).findAny();
         if (optionalVisitorOld.isPresent()) {
             FlowSummary flowSummary = assemblyFlowSummary(optionalVisitorOld.get());
             responseData.setOldVisitor(flowSummary);
 
         }
-        Optional<VisitorSummarybydate> optionalVisitorNew= visitorList.stream().filter(f -> f.getUserType().equalsIgnoreCase("new")).findAny();
+        Optional<VisitorSummarybydate> optionalVisitorNew = visitorList.stream().filter(f -> f.getUserType().equalsIgnoreCase("new")).findAny();
         if (optionalVisitorNew.isPresent()) {
             FlowSummary flowSummary = assemblyFlowSummary(optionalVisitorNew.get());
             responseData.setNewVisitor(flowSummary);
 
         }
         response.setData(responseData);
+        return response;
+    }
+
+    @Override
+    public GetVisitUriResponse getVisitUri(GetVisitUriRequest getVisitUriRequest) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        String getListSql = "select * from visituri_summary_bydate";
+        String where = "";
+
+        List<String> channelList = new ArrayList<>();
+        if (getVisitUriRequest.getChannel() != null && !getVisitUriRequest.getChannel().isEmpty()) {
+            for (String channel : getVisitUriRequest.getChannel()) {
+                LibType libType = LibType.parse(channel);
+                if (libType != null) {
+                    channelList.add(libType.getValue());
+                }
+            }
+        }
+        if (channelList.isEmpty()) {
+            channelList.add("all");
+        }
+        where += " and lib in (:channel)";
+        paramMap.addValue("channel", channelList);
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY);
+        if (StringUtils.isNotBlank(getVisitUriRequest.getStartTime())) {
+            startTime = getVisitUriRequest.getStartTime();
+        }
+        where += " and stat_date>=:starttime";
+        paramMap.addValue("starttime", startTime);
+
+        String endTime = this.yMdFORMAT.get().format(now);
+        if (StringUtils.isNotBlank(getVisitUriRequest.getEndTime())) {
+            endTime = getVisitUriRequest.getEndTime();
+        }
+        where += " and stat_date<=:endtime";
+        paramMap.addValue("endtime", endTime);
+
+        String projectName = getVisitUriRequest.getProjectName();
+        if (StringUtils.isBlank(projectName)) {
+            projectName = "gpapp";
+        }
+        where += " and project_name=:project";
+        paramMap.addValue("project", projectName);
+
+        if (StringUtils.isNotBlank(where)) {
+            getListSql += " where " + where.substring(4);
+        }
+        getListSql += " order by pv desc limit 10";
+
+        List<VisituriSummarybydate> uriList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<VisituriSummarybydate>(VisituriSummarybydate.class));
+
+        GetVisitUriResponse response = new GetVisitUriResponse();
+        List<GetVisitUriResponseData> visitUriResponseDataList = new ArrayList<>();
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        for (VisituriSummarybydate visituriSummarybydate : uriList) {
+            GetVisitUriResponseData getVisitUriResponseData = new GetVisitUriResponseData();
+            getVisitUriResponseData.setUri(visituriSummarybydate.getUri());
+            getVisitUriResponseData.setPv(visituriSummarybydate.getPv());
+            getVisitUriResponseData.setPercent(Float.parseFloat(decimalFormat.format(visituriSummarybydate.getRate())));
+            getVisitUriResponseData.setChannel(visituriSummarybydate.getLib());
+            visitUriResponseDataList.add(getVisitUriResponseData);
+        }
+        response.setData(visitUriResponseDataList);
+        return response;
+    }
+
+    @Override
+    public GetSearchWordResponse getSearchWord(GetSearchWordRequest getSearchWordRequest) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        String getListSql = "select * from searchword_summary_bydate";
+        String where = "";
+
+        List<String> channelList = new ArrayList<>();
+        if (getSearchWordRequest.getChannel() != null && !getSearchWordRequest.getChannel().isEmpty()) {
+            for (String channel : getSearchWordRequest.getChannel()) {
+                LibType libType = LibType.parse(channel);
+                if (libType != null) {
+                    channelList.add(libType.getValue());
+                }
+            }
+        }
+        if (channelList.isEmpty()) {
+            channelList.add("all");
+        }
+        where += " and lib in (:channel)";
+        paramMap.addValue("channel", channelList);
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY);
+        if (StringUtils.isNotBlank(getSearchWordRequest.getStartTime())) {
+            startTime = getSearchWordRequest.getStartTime();
+        }
+        where += " and stat_date>=:starttime";
+        paramMap.addValue("starttime", startTime);
+
+        String endTime = this.yMdFORMAT.get().format(now);
+        if (StringUtils.isNotBlank(getSearchWordRequest.getEndTime())) {
+            endTime = getSearchWordRequest.getEndTime();
+        }
+        where += " and stat_date<=:endtime";
+        paramMap.addValue("endtime", endTime);
+
+        String projectName = getSearchWordRequest.getProjectName();
+        if (StringUtils.isBlank(projectName)) {
+            projectName = "gpapp";
+        }
+        where += " and project_name=:project";
+        paramMap.addValue("project", projectName);
+
+        if (StringUtils.isNotBlank(where)) {
+            getListSql += " where " + where.substring(4);
+        }
+        getListSql += " order by pv desc limit 10";
+
+        List<SearchwordSummarybydate> searchwordList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<SearchwordSummarybydate>(SearchwordSummarybydate.class));
+
+        GetSearchWordResponse response = new GetSearchWordResponse();
+        List<GetSearchWordResponseData> visitUriResponseDataList = new ArrayList<>();
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        for (SearchwordSummarybydate searchwordSummarybydate : searchwordList) {
+            GetSearchWordResponseData getSearchWordResponseData = new GetSearchWordResponseData();
+            getSearchWordResponseData.setWord(searchwordSummarybydate.getSearchword());
+            getSearchWordResponseData.setPv(searchwordSummarybydate.getPv());
+            getSearchWordResponseData.setPercent(Float.parseFloat(decimalFormat.format(searchwordSummarybydate.getRate())));
+            getSearchWordResponseData.setChannel(searchwordSummarybydate.getLib());
+            visitUriResponseDataList.add(getSearchWordResponseData);
+        }
+        response.setData(visitUriResponseDataList);
+        return response;
+    }
+
+    @Override
+    public GetSourceWebsiteResponse getSourceWebsite(GetSourceWebsiteRequest getSourceWebsiteRequest) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        String getListSql = "select * from sourcesite_summary_bydate";
+        String where = "";
+
+        List<String> channelList = new ArrayList<>();
+        if (getSourceWebsiteRequest.getChannel() != null && !getSourceWebsiteRequest.getChannel().isEmpty()) {
+            for (String channel : getSourceWebsiteRequest.getChannel()) {
+                LibType libType = LibType.parse(channel);
+                if (libType != null) {
+                    channelList.add(libType.getValue());
+                }
+            }
+        }
+        if (channelList.isEmpty()) {
+            channelList.add("all");
+        }
+        where += " and lib in (:channel)";
+        paramMap.addValue("channel", channelList);
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY);
+        if (StringUtils.isNotBlank(getSourceWebsiteRequest.getStartTime())) {
+            startTime = getSourceWebsiteRequest.getStartTime();
+        }
+        where += " and stat_date>=:starttime";
+        paramMap.addValue("starttime", startTime);
+
+        String endTime = this.yMdFORMAT.get().format(now);
+        if (StringUtils.isNotBlank(getSourceWebsiteRequest.getEndTime())) {
+            endTime = getSourceWebsiteRequest.getEndTime();
+        }
+        where += " and stat_date<=:endtime";
+        paramMap.addValue("endtime", endTime);
+
+        String projectName = getSourceWebsiteRequest.getProjectName();
+        if (StringUtils.isBlank(projectName)) {
+            projectName = "gpapp";
+        }
+        where += " and project_name=:project";
+        paramMap.addValue("project", projectName);
+
+        if (StringUtils.isNotBlank(where)) {
+            getListSql += " where " + where.substring(4);
+        }
+        getListSql += " order by pv desc limit 10";
+
+        List<SourcesiteSummarybydate> sourcesiteSummarybydateList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<SourcesiteSummarybydate>(SourcesiteSummarybydate.class));
+
+        GetSourceWebsiteResponse response = new GetSourceWebsiteResponse();
+        List<GetSourceWebsiteResponseData> getSourceWebsiteResponseDataList = new ArrayList<>();
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        for (SourcesiteSummarybydate sourcesiteSummarybydate : sourcesiteSummarybydateList) {
+            GetSourceWebsiteResponseData getSourceWebsiteResponseData = new GetSourceWebsiteResponseData();
+            getSourceWebsiteResponseData.setWebsite(sourcesiteSummarybydate.getSourcesite());
+            getSourceWebsiteResponseData.setPv(sourcesiteSummarybydate.getPv());
+            getSourceWebsiteResponseData.setPercent(Float.parseFloat(decimalFormat.format(sourcesiteSummarybydate.getRate())));
+            getSourceWebsiteResponseData.setChannel(sourcesiteSummarybydate.getLib());
+            getSourceWebsiteResponseDataList.add(getSourceWebsiteResponseData);
+        }
+        response.setData(getSourceWebsiteResponseDataList);
+        return response;
+    }
+
+    @Override
+    public GetAreaResponse getArea(GetVisitorSummaryRequest getAreaRequest) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        String getListSql = "select * from area_summary_bydate";
+        String where = " and country<>'all' and province<>'all'";
+
+        List<String> channelList = new ArrayList<>();
+        if (getAreaRequest.getChannel() != null && !getAreaRequest.getChannel().isEmpty()) {
+            for (String channel : getAreaRequest.getChannel()) {
+                LibType libType = LibType.parse(channel);
+                if (libType != null) {
+                    channelList.add(libType.getValue());
+                }
+            }
+        }
+        if (channelList.isEmpty()) {
+            channelList.add("all");
+        }
+        where += " and lib in (:channel)";
+        paramMap.addValue("channel", channelList);
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis() - DateUtils.MILLIS_PER_DAY);
+        if (StringUtils.isNotBlank(getAreaRequest.getStartTime())) {
+            startTime = getAreaRequest.getStartTime();
+        }
+        where += " and stat_date>=:starttime";
+        paramMap.addValue("starttime", startTime);
+
+        String endTime = this.yMdFORMAT.get().format(now);
+        if (StringUtils.isNotBlank(getAreaRequest.getEndTime())) {
+            endTime = getAreaRequest.getEndTime();
+        }
+        where += " and stat_date<=:endtime";
+        paramMap.addValue("endtime", endTime);
+
+        String projectName = getAreaRequest.getProjectName();
+        if (StringUtils.isBlank(projectName)) {
+            projectName = "gpapp";
+        }
+        where += " and project_name=:project";
+        paramMap.addValue("project", projectName);
+
+        if (StringUtils.isNotBlank(where)) {
+            getListSql += " where " + where.substring(4);
+        }
+        getListSql += " order by pv desc limit 10";
+
+        List<AreaSummarybydate> areaSummarybydateList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<AreaSummarybydate>(AreaSummarybydate.class));
+
+        GetAreaResponse response = new GetAreaResponse();
+        List<GetAreaResponseData> getAreaResponseDataList = new ArrayList<>();
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        for (AreaSummarybydate areaSummarybydate : areaSummarybydateList) {
+            GetAreaResponseData getAreaResponseData = new GetAreaResponseData();
+            getAreaResponseData.setProvince(areaSummarybydate.getProvince());
+            getAreaResponseData.setPv(areaSummarybydate.getPv());
+            getAreaResponseData.setPercent(Float.parseFloat(decimalFormat.format(areaSummarybydate.getRate())));
+            getAreaResponseData.setChannel(areaSummarybydate.getLib());
+            getAreaResponseData.setStatDate(yMdFORMAT.get().format(areaSummarybydate.getStatDate()));
+            getAreaResponseDataList.add(getAreaResponseData);
+        }
+        response.setData(getAreaResponseDataList);
         return response;
     }
 
@@ -266,19 +526,18 @@ public class ReportServiceImpl implements IReportService {
         List<FlowSummarybydate> flowSummaryList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<FlowSummarybydate>(FlowSummarybydate.class));
 
         GetFlowResponseData responseData = new GetFlowResponseData();
-        Timestamp current= Timestamp.valueOf(endTime + " 00:00:00");
-        Optional<FlowSummarybydate> optionalCurrent= flowSummaryList.stream().filter(f -> f.getStatDate().equals(current)).findAny();
+        Timestamp current = Timestamp.valueOf(endTime + " 00:00:00");
+        Optional<FlowSummarybydate> optionalCurrent = flowSummaryList.stream().filter(f -> f.getStatDate().equals(current)).findAny();
         if (optionalCurrent.isPresent()) {
             FlowSummary flowSummary = assemblyFlowSummary(optionalCurrent.get());
             responseData.setCurrent(flowSummary);
 
         }
-        Timestamp previous= Timestamp.valueOf(startTime + " 00:00:00");
-        Optional<FlowSummarybydate> optionalPrevious= flowSummaryList.stream().filter(f -> f.getStatDate().equals(previous)).findAny();
+        Timestamp previous = Timestamp.valueOf(startTime + " 00:00:00");
+        Optional<FlowSummarybydate> optionalPrevious = flowSummaryList.stream().filter(f -> f.getStatDate().equals(previous)).findAny();
         if (optionalPrevious.isPresent()) {
             FlowSummary flowSummary = assemblyFlowSummary(optionalPrevious.get());
             responseData.setPrevious(flowSummary);
-
         }
         return responseData;
     }

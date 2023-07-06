@@ -14,7 +14,9 @@ public class GetSourceWebsiteResponseData {
     private int pv;
 
     @Schema(description = "占比")
-    private int percent;
+    private float percent;
 
+    @Schema(description = "渠道")
+    private String channel;
 
 }

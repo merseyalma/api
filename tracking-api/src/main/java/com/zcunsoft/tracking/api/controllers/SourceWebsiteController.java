@@ -11,6 +11,7 @@ import com.zcunsoft.tracking.api.models.trend.FlowDetail;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponse;
 import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponseData;
+import com.zcunsoft.tracking.api.services.IReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +29,13 @@ import java.util.List;
 @Tag(name = "来源网站分析", description = "来源网站分析")
 public class SourceWebsiteController {
 
+    @Resource
+    IReportService reportService;
 
     @Operation(summary = "获取Top10来源网站")
     @RequestMapping(path = "/getSourceWebsite", method = RequestMethod.POST)
     public GetSourceWebsiteResponse getSourceWebsite(@RequestBody GetSourceWebsiteRequest getSourceWebsiteRequest, HttpServletRequest request) {
-
-        GetSourceWebsiteResponse response = new GetSourceWebsiteResponse();
-        List<GetSourceWebsiteResponseData> responseDataList = new ArrayList<>();
-        GetSourceWebsiteResponseData responseData=new GetSourceWebsiteResponseData();
-        responseDataList.add(responseData);
-        response.setData(responseDataList);
-        return response;
+        return reportService.getSourceWebsite(getSourceWebsiteRequest);
     }
 
     @Operation(summary = "获取来源网站详情")

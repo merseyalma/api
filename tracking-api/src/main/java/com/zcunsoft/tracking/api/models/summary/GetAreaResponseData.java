@@ -12,4 +12,13 @@ public class GetAreaResponseData {
 
     @Schema(description = "浏览量(PV)")
     private int pv;
+
+    @Schema(description = "占比")
+    private float percent;
+
+    @Schema(description = "渠道")
+    private String channel;
+
+    @Schema(description = "统计日期")
+    private String statDate;
 }

@@ -11,6 +11,7 @@ import com.zcunsoft.tracking.api.models.sourcewebsite.SourceWebsiteDetail;
 import com.zcunsoft.tracking.api.models.summary.GetSearchWordRequest;
 import com.zcunsoft.tracking.api.models.summary.GetSearchWordResponse;
 import com.zcunsoft.tracking.api.models.summary.GetSearchWordResponseData;
+import com.zcunsoft.tracking.api.services.IReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +28,13 @@ import java.util.List;
 @RequestMapping(path = "searchword")
 @Tag(name = "搜索词分析", description = "搜索词分析")
 public class SearchWordController {
-
+    @Resource
+    IReportService reportService;
 
     @Operation(summary = "获取Top10搜索词")
     @RequestMapping(path = "/getSearchWord", method = RequestMethod.POST)
     public GetSearchWordResponse getSearchWord(@RequestBody GetSearchWordRequest getSearchWordRequest, HttpServletRequest request) {
-
-        GetSearchWordResponse response = new GetSearchWordResponse();
-        List<GetSearchWordResponseData> responseDataList = new ArrayList<>();
-        GetSearchWordResponseData responseData=new GetSearchWordResponseData();
-        responseDataList.add(responseData);
-        response.setData(responseDataList);
-        return response;
+       return reportService.getSearchWord(getSearchWordRequest);
     }
 
     @Operation(summary = "获取搜索词详情")
