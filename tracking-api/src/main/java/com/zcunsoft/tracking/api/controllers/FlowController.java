@@ -42,15 +42,6 @@ public class FlowController {
     @Operation(summary = "获取流量趋势详情")
     @RequestMapping(path = "/getFlowTrendDetail", method = RequestMethod.POST)
     public GetFlowTrendDetailResponse getFlowTrendDetail(@RequestBody GetFlowTrendDetailRequest getFlowTrendDetailRequest, HttpServletRequest request) {
-
-        GetFlowTrendDetailResponse response = new GetFlowTrendDetailResponse();
-        GetFlowTrendDetailResponseData getFlowTrendDetailResponseData =new GetFlowTrendDetailResponseData();
-        getFlowTrendDetailResponseData.setTotal(new FlowDetail());
-        List<FlowDetail> responseData= new ArrayList<>();
-        FlowDetail flowDetail =new FlowDetail();
-        responseData.add(flowDetail);
-        getFlowTrendDetailResponseData.setDetail(responseData);
-        response.setData(getFlowTrendDetailResponseData);
-        return response;
+        return reportService.getFlowTrendDetail(getFlowTrendDetailRequest);
     }
 }

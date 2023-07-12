@@ -15,7 +15,7 @@ public class FlowDetail   {
     private int pv;
 
     @Schema(description = "访问次数")
-    private int visit;
+    private int visitCount;
 
     @Schema(description = "新访客数")
     private int newUv;
@@ -30,8 +30,11 @@ public class FlowDetail   {
     private float avgPv;
 
     @Schema(description = "平均访问时长")
-    private int avgVisitTime;
+    private float avgVisitTime;
 
     @Schema(description = "跳出率")
     private float bounceRate;
+
+    @Schema(description = "渠道")
+    private String channel;
 }

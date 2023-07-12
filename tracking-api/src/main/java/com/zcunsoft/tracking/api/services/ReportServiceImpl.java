@@ -3,6 +3,10 @@ package com.zcunsoft.tracking.api.services;
 import com.zcunsoft.tracking.api.entity.clickhouse.*;
 import com.zcunsoft.tracking.api.models.enums.LibType;
 import com.zcunsoft.tracking.api.models.summary.*;
+import com.zcunsoft.tracking.api.models.trend.FlowDetail;
+import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
+import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponse;
+import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponseData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
@@ -590,5 +594,116 @@ public class ReportServiceImpl implements IReportService {
             flowSummary.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
         }
         return flowSummary;
+    }
+
+    @Override
+    public GetFlowTrendDetailResponse getFlowTrendDetail(GetFlowTrendDetailRequest getFlowTrendDetailRequest) {
+        MapSqlParameterSource paramMap = new MapSqlParameterSource();
+        String getListSql = "select * from flow_trend_bydate";
+        String where = " and country='中国'";
+
+        List<String> channelList = new ArrayList<>();
+        if (getFlowTrendDetailRequest.getChannel() != null && !getFlowTrendDetailRequest.getChannel().isEmpty()) {
+            for (String channel : getFlowTrendDetailRequest.getChannel()) {
+                LibType libType = LibType.parse(channel);
+                if (libType != null) {
+                    channelList.add(libType.getValue());
+                }
+            }
+        }
+        if (channelList.isEmpty()) {
+            channelList.add("all");
+        }
+        where += " and lib in (:channel)";
+        paramMap.addValue("channel", channelList);
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis());
+        if (StringUtils.isNotBlank(getFlowTrendDetailRequest.getStartTime())) {
+            startTime = getFlowTrendDetailRequest.getStartTime();
+        }
+        where += " and stat_date>=:starttime";
+        paramMap.addValue("starttime", startTime);
+
+        String endTime = this.yMdFORMAT.get().format(now);
+        if (StringUtils.isNotBlank(getFlowTrendDetailRequest.getEndTime())) {
+            endTime = getFlowTrendDetailRequest.getEndTime();
+        }
+        where += " and stat_date<=:endtime";
+        paramMap.addValue("endtime", endTime);
+
+        String projectName = getFlowTrendDetailRequest.getProjectName();
+        if (StringUtils.isBlank(projectName)) {
+            projectName = "gpapp";
+        }
+        where += " and project_name=:project";
+        paramMap.addValue("project", projectName);
+
+        String visitorType = getFlowTrendDetailRequest.getVisitorType();
+        if (StringUtils.isNotBlank(visitorType)) {
+            if ("老访客".equalsIgnoreCase(visitorType)) {
+                visitorType = "false";
+            } else if ("新访客".equalsIgnoreCase(visitorType)) {
+                visitorType = "true";
+            }
+
+        } else {
+            visitorType = "all";
+        }
+        where += " and is_first_day=:is_first_day";
+        paramMap.addValue("is_first_day", visitorType);
+
+        List<String> areaList = getFlowTrendDetailRequest.getArea();
+        if (areaList == null) {
+            areaList = new ArrayList<>();
+        }
+
+        if (areaList.isEmpty()) {
+            areaList.add("all");
+        }
+        where += " and province in (:province)";
+        paramMap.addValue("province", areaList);
+
+        if (StringUtils.isNotBlank(where)) {
+            getListSql += " where " + where.substring(4);
+        }
+        getListSql += " order by stat_date";
+
+        List<FlowTrendbydate> flowTrendbydateList = clickHouseJdbcTemplate.query(getListSql, paramMap, new BeanPropertyRowMapper<FlowTrendbydate>(FlowTrendbydate.class));
+
+        GetFlowTrendDetailResponse response = new GetFlowTrendDetailResponse();
+        List<FlowDetail> flowDetailList = new ArrayList<>();
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        for (FlowTrendbydate flowTrendbydate : flowTrendbydateList) {
+            FlowDetail flowDetail = new FlowDetail();
+            flowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbydate.getStatDate()));
+            flowDetail.setPv(flowTrendbydate.getPv());
+            flowDetail.setIpCount(flowTrendbydate.getIpCount());
+            flowDetail.setVisitCount(flowTrendbydate.getVisitCount());
+            flowDetail.setUv(flowTrendbydate.getUv());
+            flowDetail.setAvgPv(0);
+            flowDetail.setAvgVisitTime(0);
+            flowDetail.setBounceRate(0);
+            flowDetail.setNewUv(flowTrendbydate.getNewUv());
+            flowDetail.setChannel(flowTrendbydate.getLib());
+            if (flowDetail.getVisitCount() > 0) {
+
+                float avgPv = flowTrendbydate.getPv() * 1.0f / flowTrendbydate.getVisitCount();
+                flowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
+
+                float avgVisitTime = flowTrendbydate.getVisitTime() * 1.0f / flowTrendbydate.getVisitCount();
+                flowDetail.setAvgVisitTime(Float.parseFloat(decimalFormat.format(avgVisitTime)));
+
+                float bounceRate = flowTrendbydate.getBounceCount() * 1.0f / flowDetail.getVisitCount();
+                flowDetail.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
+            }
+
+            flowDetailList.add(flowDetail);
+        }
+        GetFlowTrendDetailResponseData responseData = new GetFlowTrendDetailResponseData();
+        responseData.setDetail(flowDetailList);
+        response.setData(responseData);
+        return response;
     }
 }

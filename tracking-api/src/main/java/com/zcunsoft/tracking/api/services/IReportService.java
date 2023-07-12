@@ -1,6 +1,8 @@
 package com.zcunsoft.tracking.api.services;
 
 import com.zcunsoft.tracking.api.models.summary.*;
+import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailRequest;
+import com.zcunsoft.tracking.api.models.trend.GetFlowTrendDetailResponse;
 
 public interface IReportService {
 
@@ -17,4 +19,6 @@ public interface IReportService {
     GetSourceWebsiteResponse getSourceWebsite(GetSourceWebsiteRequest getSourceWebsiteRequest);
 
     GetAreaResponse getArea(GetVisitorSummaryRequest getAreaRequest);
+
+    GetFlowTrendDetailResponse getFlowTrendDetail(GetFlowTrendDetailRequest getFlowTrendDetailRequest);
 }

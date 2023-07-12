@@ -4,23 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.首页趋势图、新老访客.">
-      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/AreaSummarybydate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/SearchwordSummarybydate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/SourcesiteSummarybydate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/VisituriSummarybydate.java" afterDir="false" />
+    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.首页来源网站、搜索次、地域、受访页面.">
+      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/FlowTrendbydate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/AreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/AreaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SearchWordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SearchWordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SourceWebsiteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/SourceWebsiteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/VisitUriController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/VisitUriController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetAreaResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetAreaResponseData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSearchWordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSearchWordRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSearchWordResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSearchWordResponseData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSourceWebsiteRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSourceWebsiteRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSourceWebsiteResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetSourceWebsiteResponseData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetVisitUriRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetVisitUriRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetVisitUriResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/summary/GetVisitUriResponseData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/FlowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/FlowDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/FlowDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/GetFlowTrendDetailRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/GetFlowTrendDetailRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/IReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/IReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java" afterDir="false" />
     </list>
@@ -366,13 +355,10 @@
       <workItem from="1688087399093" duration="9390000" />
       <workItem from="1688363124692" duration="8432000" />
       <workItem from="1688434458662" duration="5208000" />
-    </task>
-    <task id="LOCAL-00038" summary="1.清除无效Import">
-      <created>1680495565592</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1680495565592</updated>
+      <workItem from="1688623203948" duration="100000" />
+      <workItem from="1689043636348" duration="133000" />
+      <workItem from="1689068617960" duration="212000" />
+      <workItem from="1689153585568" duration="2541000" />
     </task>
     <task id="LOCAL-00039" summary="1.修改产品渠道数据报表(月).">
       <created>1680506601460</created>
@@ -710,7 +696,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688375757747</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="1.首页来源网站、搜索次、地域、受访页面.">
+      <created>1688623293509</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1688623293509</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,7 +721,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.增加活动卡片位统计(每日clicksuv)" />
     <MESSAGE value="1.修复下." />
     <MESSAGE value="1.修复上传七牛云的文件路径bug." />
     <MESSAGE value="1.整合活动统计展示（实习生）." />
@@ -753,7 +745,8 @@
     <MESSAGE value="1.跨域。" />
     <MESSAGE value="1.首页流量概览." />
     <MESSAGE value="1.首页趋势图、新老访客." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.首页趋势图、新老访客." />
+    <MESSAGE value="1.首页来源网站、搜索次、地域、受访页面." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.首页来源网站、搜索次、地域、受访页面." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -765,23 +758,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
-          <line>59</line>
+          <line>63</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
-          <line>57</line>
+          <line>61</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
-          <line>525</line>
+          <line>529</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
-          <line>198</line>
+          <line>202</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
+          <line>671</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
