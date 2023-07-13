@@ -600,7 +600,7 @@ public class ReportServiceImpl implements IReportService {
     public GetFlowTrendDetailResponse getFlowTrendDetail(GetFlowTrendDetailRequest getFlowTrendDetailRequest) {
         MapSqlParameterSource paramMap = new MapSqlParameterSource();
         String getListSql = "select * from flow_trend_bydate";
-        String where = " and country='中国'";
+        String where = "";
 
         List<String> channelList = new ArrayList<>();
         if (getFlowTrendDetailRequest.getChannel() != null && !getFlowTrendDetailRequest.getChannel().isEmpty()) {
@@ -618,19 +618,19 @@ public class ReportServiceImpl implements IReportService {
         paramMap.addValue("channel", channelList);
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        String startTime = this.yMdFORMAT.get().format(System.currentTimeMillis());
+        Timestamp startTime = Timestamp.valueOf(this.yMdFORMAT.get().format(now) + " 00:00:00");
         if (StringUtils.isNotBlank(getFlowTrendDetailRequest.getStartTime())) {
-            startTime = getFlowTrendDetailRequest.getStartTime();
+            startTime = Timestamp.valueOf(getFlowTrendDetailRequest.getStartTime() + " 00:00:00");
         }
         where += " and stat_date>=:starttime";
-        paramMap.addValue("starttime", startTime);
+        paramMap.addValue("starttime", this.yMdFORMAT.get().format(startTime));
 
-        String endTime = this.yMdFORMAT.get().format(now);
+        Timestamp endTime = startTime;
         if (StringUtils.isNotBlank(getFlowTrendDetailRequest.getEndTime())) {
-            endTime = getFlowTrendDetailRequest.getEndTime();
+            endTime = Timestamp.valueOf(getFlowTrendDetailRequest.getEndTime() + " 00:00:00");
         }
         where += " and stat_date<=:endtime";
-        paramMap.addValue("endtime", endTime);
+        paramMap.addValue("endtime", this.yMdFORMAT.get().format(endTime));
 
         String projectName = getFlowTrendDetailRequest.getProjectName();
         if (StringUtils.isBlank(projectName)) {
@@ -653,16 +653,27 @@ public class ReportServiceImpl implements IReportService {
         where += " and is_first_day=:is_first_day";
         paramMap.addValue("is_first_day", visitorType);
 
-        List<String> areaList = getFlowTrendDetailRequest.getArea();
-        if (areaList == null) {
-            areaList = new ArrayList<>();
+        List<String> countryList = getFlowTrendDetailRequest.getCountry();
+        if (countryList == null) {
+            countryList = new ArrayList<>();
         }
 
-        if (areaList.isEmpty()) {
-            areaList.add("all");
+        if (countryList.isEmpty()) {
+            countryList.add("all");
+        }
+        where += " and country in (:country)";
+        paramMap.addValue("country", countryList);
+
+        List<String> provinceList = getFlowTrendDetailRequest.getProvince();
+        if (provinceList == null) {
+            provinceList = new ArrayList<>();
+        }
+
+        if (provinceList.isEmpty()) {
+            provinceList.add("all");
         }
         where += " and province in (:province)";
-        paramMap.addValue("province", areaList);
+        paramMap.addValue("province", provinceList);
 
         if (StringUtils.isNotBlank(where)) {
             getListSql += " where " + where.substring(4);
@@ -674,19 +685,42 @@ public class ReportServiceImpl implements IReportService {
         GetFlowTrendDetailResponse response = new GetFlowTrendDetailResponse();
         List<FlowDetail> flowDetailList = new ArrayList<>();
 
+        FlowDetail totalFlowDetail = null;
+        if (!flowTrendbydateList.isEmpty()) {
+            totalFlowDetail = new FlowDetail();
+            totalFlowDetail.setAvgPv(0);
+            totalFlowDetail.setAvgVisitTime(0);
+            totalFlowDetail.setBounceRate(0);
+        }
+        int totalVisitTime = 0;
+        int totalBounceCount = 0;
+
         DecimalFormat decimalFormat = new DecimalFormat("0.##");
         for (FlowTrendbydate flowTrendbydate : flowTrendbydateList) {
+            // 合计
+            totalFlowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbydate.getStatDate()));
+            totalFlowDetail.setPv(totalFlowDetail.getPv() + flowTrendbydate.getPv());
+            totalFlowDetail.setIpCount(totalFlowDetail.getIpCount() + flowTrendbydate.getIpCount());
+            totalFlowDetail.setVisitCount(totalFlowDetail.getVisitCount() + flowTrendbydate.getVisitCount());
+            totalFlowDetail.setUv(totalFlowDetail.getUv() + flowTrendbydate.getUv());
+            totalFlowDetail.setNewUv(totalFlowDetail.getNewUv() + flowTrendbydate.getNewUv());
+            totalFlowDetail.setChannel(flowTrendbydate.getLib());
+            totalVisitTime += flowTrendbydate.getVisitTime();
+            totalBounceCount += flowTrendbydate.getBounceCount();
+
+            //每天的数量
             FlowDetail flowDetail = new FlowDetail();
             flowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbydate.getStatDate()));
             flowDetail.setPv(flowTrendbydate.getPv());
             flowDetail.setIpCount(flowTrendbydate.getIpCount());
             flowDetail.setVisitCount(flowTrendbydate.getVisitCount());
             flowDetail.setUv(flowTrendbydate.getUv());
+            flowDetail.setNewUv(flowTrendbydate.getNewUv());
+            flowDetail.setChannel(flowTrendbydate.getLib());
             flowDetail.setAvgPv(0);
             flowDetail.setAvgVisitTime(0);
             flowDetail.setBounceRate(0);
-            flowDetail.setNewUv(flowTrendbydate.getNewUv());
-            flowDetail.setChannel(flowTrendbydate.getLib());
+
             if (flowDetail.getVisitCount() > 0) {
 
                 float avgPv = flowTrendbydate.getPv() * 1.0f / flowTrendbydate.getVisitCount();
@@ -703,6 +737,21 @@ public class ReportServiceImpl implements IReportService {
         }
         GetFlowTrendDetailResponseData responseData = new GetFlowTrendDetailResponseData();
         responseData.setDetail(flowDetailList);
+
+        if (totalFlowDetail != null && totalFlowDetail.getVisitCount() > 0) {
+
+            float avgPv = totalFlowDetail.getPv() * 1.0f / totalFlowDetail.getVisitCount();
+            totalFlowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
+
+            float avgVisitTime = totalVisitTime * 1.0f / totalFlowDetail.getVisitCount();
+            totalFlowDetail.setAvgVisitTime(Float.parseFloat(decimalFormat.format(avgVisitTime)));
+
+            float bounceRate = totalBounceCount * 1.0f / totalFlowDetail.getVisitCount();
+            totalFlowDetail.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
+        }
+        responseData.setTotal(totalFlowDetail);
+
+
         response.setData(responseData);
         return response;
     }

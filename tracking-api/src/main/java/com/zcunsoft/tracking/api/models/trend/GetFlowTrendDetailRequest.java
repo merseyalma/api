@@ -17,8 +17,11 @@ public class GetFlowTrendDetailRequest {
     @Schema(description = "渠道", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"安卓\",\"苹果\",\"网站\",\"微信小程序\"]")
     private List<String> channel = new ArrayList<>();
 
-    @Schema(description = "地域", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"上海\",\"北京\"]")
-    private List<String> area;
+    @Schema(description = "国家或地区", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"美国\",\"全球\"]")
+    private List<String> country;
+
+    @Schema(description = "地域", requiredMode = Schema.RequiredMode.REQUIRED, example = "[\"上海\",\"北京\",\"其他\"]")
+    private List<String> province;
 
     @Schema(description = "访客类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "新访客,老访客")
     private String visitorType;
