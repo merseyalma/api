@@ -709,37 +709,70 @@ public class ReportServiceImpl implements IReportService {
             totalBounceCount += flowTrendbydate.getBounceCount();
 
             //每天的数量
-            FlowDetail flowDetail = new FlowDetail();
-            flowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbydate.getStatDate()));
-            flowDetail.setPv(flowTrendbydate.getPv());
-            flowDetail.setIpCount(flowTrendbydate.getIpCount());
-            flowDetail.setVisitCount(flowTrendbydate.getVisitCount());
-            flowDetail.setUv(flowTrendbydate.getUv());
-            flowDetail.setNewUv(flowTrendbydate.getNewUv());
-            flowDetail.setChannel(flowTrendbydate.getLib());
-            flowDetail.setAvgPv(0);
-            flowDetail.setAvgVisitTime(0);
-            flowDetail.setBounceRate(0);
+            if ("day".equalsIgnoreCase(getFlowTrendDetailRequest.getTimeType())) {
+                FlowDetail flowDetail = new FlowDetail();
+                flowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbydate.getStatDate()));
+                flowDetail.setPv(flowTrendbydate.getPv());
+                flowDetail.setIpCount(flowTrendbydate.getIpCount());
+                flowDetail.setVisitCount(flowTrendbydate.getVisitCount());
+                flowDetail.setUv(flowTrendbydate.getUv());
+                flowDetail.setNewUv(flowTrendbydate.getNewUv());
+                flowDetail.setChannel(flowTrendbydate.getLib());
+                flowDetail.setAvgPv(0);
+                flowDetail.setAvgVisitTime(0);
+                flowDetail.setBounceRate(0);
 
-            if (flowDetail.getVisitCount() > 0) {
+                if (flowDetail.getVisitCount() > 0) {
 
-                float avgPv = flowTrendbydate.getPv() * 1.0f / flowTrendbydate.getVisitCount();
-                flowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
+                    float avgPv = flowTrendbydate.getPv() * 1.0f / flowTrendbydate.getVisitCount();
+                    flowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
 
-                float avgVisitTime = flowTrendbydate.getVisitTime() * 1.0f / flowTrendbydate.getVisitCount();
-                flowDetail.setAvgVisitTime(Float.parseFloat(decimalFormat.format(avgVisitTime)));
+                    float avgVisitTime = flowTrendbydate.getVisitTime() * 1.0f / flowTrendbydate.getVisitCount();
+                    flowDetail.setAvgVisitTime(Float.parseFloat(decimalFormat.format(avgVisitTime)));
 
-                float bounceRate = flowTrendbydate.getBounceCount() * 1.0f / flowDetail.getVisitCount();
-                flowDetail.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
+                    float bounceRate = flowTrendbydate.getBounceCount() * 1.0f / flowDetail.getVisitCount();
+                    flowDetail.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
+                }
+
+                flowDetailList.add(flowDetail);
             }
+        }
 
-            flowDetailList.add(flowDetail);
+        if ("hour".equalsIgnoreCase(getFlowTrendDetailRequest.getTimeType())) {
+            String getHourListSql = "select * from flow_trend_byhour where " + where.substring(4) + " order by stat_date,stat_hour";
+            List<FlowTrendbyhour> flowTrendbyhourList = clickHouseJdbcTemplate.query(getHourListSql, paramMap, new BeanPropertyRowMapper<FlowTrendbyhour>(FlowTrendbyhour.class));
+
+            for (FlowTrendbyhour flowTrendbyhour : flowTrendbyhourList) {
+                FlowDetail flowDetail = new FlowDetail();
+                flowDetail.setStatDate(this.yMdFORMAT.get().format(flowTrendbyhour.getStatDate()));
+                flowDetail.setStatHour(flowTrendbyhour.getStatHour());
+                flowDetail.setPv(flowTrendbyhour.getPv());
+                flowDetail.setIpCount(flowTrendbyhour.getIpCount());
+                flowDetail.setVisitCount(flowTrendbyhour.getVisitCount());
+                flowDetail.setUv(flowTrendbyhour.getUv());
+                flowDetail.setNewUv(flowTrendbyhour.getNewUv());
+                flowDetail.setChannel(flowTrendbyhour.getLib());
+                flowDetail.setAvgPv(0);
+                flowDetail.setAvgVisitTime(0);
+                flowDetail.setBounceRate(0);
+
+                if (flowDetail.getVisitCount() > 0) {
+                    float avgPv = flowTrendbyhour.getPv() * 1.0f / flowTrendbyhour.getVisitCount();
+                    flowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
+
+                    float avgVisitTime = flowTrendbyhour.getVisitTime() * 1.0f / flowTrendbyhour.getVisitCount();
+                    flowDetail.setAvgVisitTime(Float.parseFloat(decimalFormat.format(avgVisitTime)));
+
+                    float bounceRate = flowTrendbyhour.getBounceCount() * 1.0f / flowDetail.getVisitCount();
+                    flowDetail.setBounceRate(Float.parseFloat(decimalFormat.format(bounceRate)));
+                }
+                flowDetailList.add(flowDetail);
+            }
         }
         GetFlowTrendDetailResponseData responseData = new GetFlowTrendDetailResponseData();
         responseData.setDetail(flowDetailList);
 
         if (totalFlowDetail != null && totalFlowDetail.getVisitCount() > 0) {
-
             float avgPv = totalFlowDetail.getPv() * 1.0f / totalFlowDetail.getVisitCount();
             totalFlowDetail.setAvgPv(Float.parseFloat(decimalFormat.format(avgPv)));
 

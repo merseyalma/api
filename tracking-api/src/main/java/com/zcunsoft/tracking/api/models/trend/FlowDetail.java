@@ -1,5 +1,6 @@
 package com.zcunsoft.tracking.api.models.trend;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zcunsoft.tracking.api.models.summary.FlowSummary;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -10,6 +11,10 @@ public class FlowDetail   {
 
     @Schema(description = "统计日期")
     private String statDate;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Schema(description = "统计小时")
+    private String statHour;
 
     @Schema(description = "浏览量(PV)")
     private int pv;

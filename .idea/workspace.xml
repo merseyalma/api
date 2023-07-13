@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.首页来源网站、搜索次、地域、受访页面.">
-      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/FlowTrendbydate.java" afterDir="false" />
+    <list default="true" id="c527ecc1-9ca0-4adf-84a9-b7a13d35e0d9" name="变更" comment="1.趋势分析.">
+      <change afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/entity/clickhouse/FlowTrendbyhour.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/controllers/FlowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/FlowDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/FlowDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/GetFlowTrendDetailRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/models/trend/GetFlowTrendDetailRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/IReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/IReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -358,21 +355,8 @@
       <workItem from="1688623203948" duration="100000" />
       <workItem from="1689043636348" duration="133000" />
       <workItem from="1689068617960" duration="212000" />
-      <workItem from="1689153585568" duration="2541000" />
-    </task>
-    <task id="LOCAL-00039" summary="1.修改产品渠道数据报表(月).">
-      <created>1680506601460</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1680506601460</updated>
-    </task>
-    <task id="LOCAL-00040" summary="1.产品渠道数据报表(登录用户部分).">
-      <created>1680509293218</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1680509293218</updated>
+      <workItem from="1689153585568" duration="2850000" />
+      <workItem from="1689210955576" duration="5866000" />
     </task>
     <task id="LOCAL-00041" summary="1.重构全局用户统计.">
       <created>1680510932931</created>
@@ -703,7 +687,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688623293509</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="1.趋势分析.">
+      <created>1689156432631</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1689156432632</updated>
+    </task>
+    <task id="LOCAL-00089" summary="1.趋势分析.">
+      <created>1689213873794</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1689213873794</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +719,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1.修复下." />
     <MESSAGE value="1.修复上传七牛云的文件路径bug." />
     <MESSAGE value="1.整合活动统计展示（实习生）." />
     <MESSAGE value="1.修改渠道显示." />
@@ -746,7 +743,8 @@
     <MESSAGE value="1.首页流量概览." />
     <MESSAGE value="1.首页趋势图、新老访客." />
     <MESSAGE value="1.首页来源网站、搜索次、地域、受访页面." />
-    <option name="LAST_COMMIT_MESSAGE" value="1.首页来源网站、搜索次、地域、受访页面." />
+    <MESSAGE value="1.趋势分析." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.趋势分析." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -778,7 +776,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tracking-api/src/main/java/com/zcunsoft/tracking/api/services/ReportServiceImpl.java</url>
-          <line>671</line>
+          <line>682</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
